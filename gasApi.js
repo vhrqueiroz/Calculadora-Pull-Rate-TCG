@@ -1,5 +1,5 @@
 /* Cliente da API do Pokémon TCG Dashboard. O token de sessão existe somente em memória. */
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwdTlLXqW8Xqj0oHaTAcQubRIrLX8euJQj_TABxN10cwGYgs0_kt50MTdQRVvIxP7Ns/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxAON1fvdZPXi3OAAhMiVyj0Eao0DqkSYFDmuk3c5uWTXRRHq_Tt3gkeinWGbODnhij/exec";
 const MAP_STORAGE_KEY = "pokemonTcgDashboard.mapeamento.v1";
 const NUMERIC_FIELDS = ["ID", "Total de Boosters", "Quantidade de Cartas", "Total de Cartas", "Double Rare", "Ultra Rare", "Classic Rare", "Illustration Rare", "Special Illustration Rare", "Mega Hyper Rare", "Mega Attack Rare", "Futuristic Rare", "Total"];
 const RETRY_PAUSES = [600, 1500];
@@ -83,6 +83,17 @@ function normalizeRecords(records) {
   });
 }
 
+/* Última cópia do Mapeamento guardada neste navegador (usada ao abrir a página e se a rede falhar). */
+function readMapeamentoCache() {
+  try {
+    const saved = localStorage.getItem(MAP_STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && Array.isArray(parsed.data) && parsed.data.length) return { version: parsed.version || "", data: parsed.data };
+    }
+  } catch (storageError) {}
+  return null;
+}
 async function loadMapeamento() {
   try {
     const result = await _post({ action: "getMapeamento" });
@@ -92,13 +103,8 @@ async function loadMapeamento() {
       return result.data;
     }
   } catch (requestError) {}
-  try {
-    const saved = localStorage.getItem(MAP_STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed && Array.isArray(parsed.data) && parsed.data.length) { window.productMappingVersion = parsed.version || ""; return parsed.data; }
-    }
-  } catch (storageError) {}
+  const cached = readMapeamentoCache();
+  if (cached) { window.productMappingVersion = cached.version; return cached.data; }
   return null;
 }
 async function getRecords(sheetName) {

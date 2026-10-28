@@ -35,6 +35,7 @@
 .logo-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{background:rgba(82,103,232,.07)}
 .me-registry-logo{display:block;height:28px;width:92px;object-fit:contain}
+.map-note{color:#e0b36a;margin:12px 0 0}
 .focus-chip{display:inline-flex;align-items:center;gap:8px;margin-left:12px;padding:3px 6px 3px 12px;border:1px solid var(--blue);border-radius:999px;color:var(--ink);font-size:12px}
 .focus-chip[hidden]{display:none}
 .chip-clear{padding:2px 9px;font-size:11px;border-radius:999px}
@@ -159,7 +160,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <div class="modal-overlay" id="m-addModalOverlay"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-addModalTitle"><div class="modal-head"><h3 id="m-addModalTitle">Adicionar registro</h3><button type="button" class="modal-close" id="m-closeAddBtn" aria-label="Fechar">×</button></div><form id="m-addForm"><div class="form-grid">
 <label>Bloco<select id="m-f-bloco"><option value="Mega Evolução">Mega Evolução</option></select></label>
 <label>Coleção<select id="m-f-colecao" required><option value="Reinado Delta">Reinado Delta</option><option value="Megaevolução">Megaevolução</option><option value="Fogo Fantasmagórico">Fogo Fantasmagórico</option><option value="Heróis Excelsos">Heróis Excelsos</option><option value="Equilíbrio Perfeito">Equilíbrio Perfeito</option><option value="Caos Ascendente">Caos Ascendente</option><option value="Escuridão Absoluta">Escuridão Absoluta</option></select></label>
-<label>Produto<select id="m-f-produto"><option value="Blister Unitário">Blister Unitário</option><option value="Triple Pack">Triple Pack</option><option value="Case de Triple Pack">Case de Triple Pack</option><option value="Quadri Pack">Quadri Pack</option><option value="Case de Quadri Pack">Case de Quadri Pack</option><option value="Combo de Pacote">Combo de Pacote</option><option value="Box Mega Luar">Box Mega Luar</option><option value="Box com Jumbo">Box com Jumbo</option><option value="Box Desafio Estratégico">Box Desafio Estratégico</option><option value="Elite Trainer Box">Elite Trainer Box</option><option value="Case de Blister Unitário">Case de Blister Unitário</option><option value="Booster Box">Booster Box</option><option value="Booster avulso">Booster avulso</option></select></label>
+<label>Produto<select id="m-f-produto"></select></label>
 <label>Nacionalidade<select id="m-f-nacionalidade"><option value="Brasil">Brasil</option><option value="USA">USA</option></select></label>
 <label>Boosters<input type="number" id="m-f-boosters" min="0" step="1" value="36" readonly></label>
 <label>Total de Cartas<input type="number" id="m-f-total-cartas" value="0" readonly></label>
@@ -170,7 +171,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <label>Mega Hyper Rare<input type="number" id="m-f-hr" min="0" step="1" value="0"></label>
 <label id="m-f-mar-wrap" hidden>Mega Attack Rare<input type="number" id="m-f-mar" min="0" step="1" value="0"></label>
 <label>Total de Hit<input type="number" id="m-f-total" value="0" readonly></label>
-</div><div class="modal-actions"><button type="button" class="secondary-btn" id="m-cancelAddBtn">Cancelar</button><button type="submit">Adicionar</button></div></form></div></div>
+</div><p class="hint map-note" id="m-mapNote" hidden></p><div class="modal-actions"><button type="button" class="secondary-btn" id="m-cancelAddBtn">Cancelar</button><button type="submit">Adicionar</button></div></form></div></div>
 </main></div>
 
 <div class="shell" id="thirtyApp" style="display:none">
@@ -189,7 +190,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <div class="modal-overlay" id="t-addModalOverlay"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="t-addModalTitle"><div class="modal-head"><h3 id="t-addModalTitle">Adicionar registro</h3><button type="button" class="modal-close" id="t-closeAddBtn" aria-label="Fechar">×</button></div><form id="t-addForm"><div class="form-grid">
 <label>Bloco<select id="t-f-bloco"><option value="Coleções Especiais">Coleções Especiais</option></select></label>
 <label>Coleção<select id="t-f-colecao"><option value="Celebração de 30 anos">Celebração de 30 anos</option></select></label>
-<label>Produto<select id="t-f-produto"><option value="Double Pack">Double Pack</option><option value="Case de Double Pack">Case de Double Pack</option><option value="Minilata">Minilata</option><option value="Triple Pack">Triple Pack</option><option value="Case de Triple Pack">Case de Triple Pack</option><option value="Case de Quadri Pack">Case de Quadri Pack</option><option value="Box com Poster">Box com Poster</option><option value="Box com Jumbo">Box com Jumbo</option><option value="Box com Fichário">Box com Fichário</option><option value="Box Miniatura">Box Miniatura</option><option value="Combo de Pacote">Combo de Pacote</option><option value="Box Ditto">Box Ditto</option><option value="Elite Trainer Box">Elite Trainer Box</option><option value="Ultra-Premium Collection">Ultra-Premium Collection</option><option value="Booster avulso">Booster avulso</option></select></label>
+<label>Produto<select id="t-f-produto"></select></label>
 <label>Nacionalidade<select id="t-f-nacionalidade"><option value="Brasil">Brasil</option><option value="USA">USA</option></select></label>
 <label>Boosters<input type="number" id="t-f-boosters" min="0" step="1" value="2" readonly></label>
 <label>Total de Cartas<input type="number" id="t-f-total-cartas" value="0" readonly></label>
@@ -199,7 +200,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <label>Special Illustration Rare<input type="number" id="t-f-sir" min="0" step="1" value="0"></label>
 <label>Futuristic Rare<input type="number" id="t-f-fr" min="0" step="1" value="0"></label>
 <label>Total de Hit<input type="number" id="t-f-total" value="0" readonly></label>
-</div><div class="modal-actions"><button type="button" class="secondary-btn" id="t-cancelAddBtn">Cancelar</button><button type="submit">Adicionar</button></div></form></div></div>
+</div><p class="hint map-note" id="t-mapNote" hidden></p><div class="modal-actions"><button type="button" class="secondary-btn" id="t-cancelAddBtn">Cancelar</button><button type="submit">Adicionar</button></div></form></div></div>
 </main>
 </div>
 <script>// Access handlers are registered before dashboard initialization.
@@ -230,183 +231,29 @@ const CATS=['Double Rare','Ultra Rare','Illustration Rare','Special Illustration
    e são calculadas apenas sobre os boosters dessas coleções. */
 const ME_EXCLUSIVE_CATS=Object.freeze({'Mega Attack Rare':['Heróis Excelsos']});
 const nf=new Intl.NumberFormat('pt-BR');const pf=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});const df=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
-const CASE_TO_BASE={'Case de Quadri Pack':'Quadri Pack','Case de Triple Pack':'Triple Pack','Case de Blister Unitário':'Blister Unitário','Case de Double Pack':'Double Pack'};
-const PRODUCT_BOOSTER_MAP=Object.freeze({
-  "Celebração de 30 anos|Brasil|Double Pack": {"boosters": 2, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Double Pack": {"boosters": 2, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Box com Jumbo": {"boosters": 4, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Box com Jumbo": {"boosters": 4, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Box com Poster": {"boosters": 3, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Box com Poster": {"boosters": 3, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Box com Fichário": {"boosters": 5, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Box com Fichário": {"boosters": 5, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Celebração de 30 anos|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Celebração de 30 anos|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Reinado Delta|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Booster Box": {"boosters": 36, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Booster Box": {"boosters": 36, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Reinado Delta|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Reinado Delta|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Reinado Delta|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Reinado Delta|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Booster Box": {"boosters": 36, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Booster Box": {"boosters": 36, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Escuridão Absoluta|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Escuridão Absoluta|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Escuridão Absoluta|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Escuridão Absoluta|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Box Mega Luar": {"boosters": 6, "cardsPerBooster": 6},
-  "Caos Ascendente|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Booster Box": {"boosters": 36, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Booster Box": {"boosters": 36, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Caos Ascendente|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Caos Ascendente|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Caos Ascendente|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Caos Ascendente|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Booster Box": {"boosters": 36, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Booster Box": {"boosters": 36, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Equilíbrio Perfeito|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Equilíbrio Perfeito|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Booster Box": {"boosters": 36, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Booster Box": {"boosters": 36, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Fogo Fantasmagórico|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Fogo Fantasmagórico|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Heróis Excelsos|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Heróis Excelsos|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Heróis Excelsos|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Heróis Excelsos|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Blister Unitário": {"boosters": 1, "cardsPerBooster": 6},
-  "Megaevolução|USA|Blister Unitário": {"boosters": 1, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Triple Pack": {"boosters": 3, "cardsPerBooster": 6},
-  "Megaevolução|USA|Triple Pack": {"boosters": 3, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Quadri Pack": {"boosters": 4, "cardsPerBooster": 6},
-  "Megaevolução|USA|Quadri Pack": {"boosters": 4, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Combo de Pacote": {"boosters": 18, "cardsPerBooster": 6},
-  "Megaevolução|USA|Combo de Pacote": {"boosters": 6, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Elite Trainer Box": {"boosters": 20, "cardsPerBooster": 6},
-  "Megaevolução|USA|Elite Trainer Box": {"boosters": 9, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Booster Box": {"boosters": 36, "cardsPerBooster": 6},
-  "Megaevolução|USA|Booster Box": {"boosters": 36, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 6},
-  "Megaevolução|USA|Case de Quadri Pack": {"boosters": 48, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Box Desafio Estratégico": {"boosters": 8, "cardsPerBooster": 6},
-  "Megaevolução|Brasil|Case de Blister Unitário": {"boosters": 24, "cardsPerBooster": 6},
-  "Megaevolução|Brasil|Case de Triple Pack": {"boosters": 36, "cardsPerBooster": 6},
-  "Megaevolução|USA|Box com Jumbo": {"boosters": 6, "cardsPerBooster": 10},
-  "Megaevolução|Brasil|Booster avulso": {"boosters": 1, "cardsPerBooster": 6},
-  "Megaevolução|USA|Booster avulso": {"boosters": 1, "cardsPerBooster": 10}
-});
 function normalizeProductMapPart(value){return String(value==null?'':value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ').toLocaleLowerCase('pt-BR')}
 function normalizeCollectionMapPart(value){return normalizeProductMapPart(value).split(' ').filter(part=>part&&part!=='de').join(' ')}
 function productMapKey(collection,nationality,product){const c=normalizeCollectionMapPart(collection);let n=normalizeProductMapPart(nationality);if(n==='eua'||n==='u.s.a.')n='usa';return[c,n,normalizeProductMapPart(product)].join('|')}function productFromMapRow(row){return row&&(row.Produto||row.produto||row['Produto']||row['Tipo']||row.tipo)||''}
-function buildNormalizedProductMap(rows){const map={};(rows||[]).forEach(r=>{const collection=r.Colecao||r['Coleção']||r.colecao||'';const product=productFromMapRow(r);const nation=r.Nacionalidade||r.nacionalidade||'';const boosters=Number(r['Total de Boosters']);const cards=Number(r['Total de Cartas']);if(collection&&product&&nation&&Number.isFinite(boosters)&&Number.isFinite(cards))map[productMapKey(collection,nation,product)]={boosters:boosters,cardsPerBooster:cards}});return Object.freeze(map)}
-const PRODUCT_BOOSTER_MAP_EMBEDDED_NORMALIZED=Object.freeze(Object.entries(PRODUCT_BOOSTER_MAP).reduce((m,[key,value])=>{const[c,n,p]=key.split('|');m[productMapKey(c,n,p)]=value;return m},{}));
-let PRODUCT_BOOSTER_MAP_NORMALIZED=PRODUCT_BOOSTER_MAP_EMBEDDED_NORMALIZED;let PRODUCT_BOOSTER_MAP_REMOTE_ACTIVE=false;
-function refreshProductMapConsumers(){[window.mRender,window.tRender,window.mAutofillBoosters,window.tAutofillBoosters].forEach(fn=>{if(typeof fn==='function')fn()})}
-function applyRemoteProductMapping(rows,version){if(!Array.isArray(rows)||!rows.length)return false;PRODUCT_BOOSTER_MAP_NORMALIZED=Object.freeze(Object.assign({},PRODUCT_BOOSTER_MAP_EMBEDDED_NORMALIZED,buildNormalizedProductMap(rows)));PRODUCT_BOOSTER_MAP_REMOTE_ACTIVE=true;window.productMappingVersion=version||'';refreshProductMapConsumers();return true}
+/* ===== Mapeamento de produtos: vem 100% da aba "Mapeamento" (nada fixo no código) =====
+   Colunas: Coleção | Produto | Nacionalidade | Total de Boosters | Total de Cartas (cartas de CADA booster) | Produto Base (opcional) */
+let PRODUCT_MAP=Object.freeze({entries:{},list:[],bases:{},suspect:[],version:''});window.productMappingStatus='loading';
+function nationKey(value){const n=normalizeProductMapPart(value);return n==='eua'||n==='u.s.a.'?'usa':n}
+function buildProductMap(rows,version){const entries={},list=[],bases={},suspect=[];(rows||[]).forEach(r=>{const collection=String(r.Colecao||r['Coleção']||r.colecao||'').trim(),product=String(productFromMapRow(r)||'').trim(),nationality=String(r.Nacionalidade||r.nacionalidade||'').trim(),boosters=Number(r['Total de Boosters']),cards=Number(r['Total de Cartas']);if(!collection||!product||!nationality||!Number.isFinite(boosters)||!Number.isFinite(cards))return;const rawBase=String(r['Produto Base']||'').trim(),base=rawBase&&normalizeProductMapPart(rawBase)!==normalizeProductMapPart(product)?rawBase:'';const entry={collection,nationality,product,boosters,cardsPerBooster:cards,base};entries[productMapKey(collection,nationality,product)]=entry;list.push(entry);if(base)bases[normalizeProductMapPart(product)]=base;if(cards>20)suspect.push(entry)});return Object.freeze({entries,list,bases,suspect,version:version||''})}
+function mappedProducts(collection,nationality){const c=normalizeCollectionMapPart(collection),n=nationKey(nationality),seen=new Set(),out=[];PRODUCT_MAP.list.forEach(e=>{if(normalizeCollectionMapPart(e.collection)!==c||nationKey(e.nationality)!==n)return;const k=normalizeProductMapPart(e.product);if(!seen.has(k)){seen.add(k);out.push(e.product)}});return out}
+function refreshProductMapConsumers(){[window.m_initFilters,t_initFilters,window.mRender,tRender,window.meUpdateAddProducts,tUpdateAddProducts].forEach(fn=>{if(typeof fn==='function')fn()})}
+function mappingNoteText(){const st=window.productMappingStatus;if(st==='unavailable')return 'Não foi possível carregar a aba Mapeamento: sem ela não há produtos para cadastrar. Recarregue a página ou confira a implantação do Apps Script.';if(st==='backend-old')return 'O backend (Codigo.gs) está desatualizado: publique a nova versão para que a coluna "Produto Base" do Mapeamento seja lida.';if(PRODUCT_MAP.suspect.length)return 'Atenção: '+PRODUCT_MAP.suspect.length+' linha(s) do Mapeamento têm "Total de Cartas" acima de 20. Essa coluna deve ter as cartas de cada booster (ex.: 6 ou 10), não o total do produto.';return ''}
+function updateMapNotes(){const text=mappingNoteText();['m','t'].forEach(p=>{const el=document.getElementById(p+'-mapNote');if(el){el.hidden=!text;el.textContent=text}})}
+function applyRemoteProductMapping(rows,version){if(!Array.isArray(rows)||!rows.length)return false;PRODUCT_MAP=buildProductMap(rows,version);window.productMappingVersion=version||'';window.productMappingStatus=rows.some(r=>r&&'Produto Base' in r)?'ok':'backend-old';refreshProductMapConsumers();updateMapNotes();return true}
 function productValue(row){return row&&row['Produto']!=null&&row['Produto']!==''?row['Produto']:(row&&row['Tipo']!=null?row['Tipo']:'')}
-function prodBase(product){const value=product&&typeof product==='object'?productValue(product):product;const n=normalizeProductMapPart(value);const key=Object.keys(CASE_TO_BASE).find(x=>normalizeProductMapPart(x)===n);return key?CASE_TO_BASE[key]:value}
-function lookupProductEntry(collection,nationality,product){const key=productMapKey(collection,nationality,product);return(PRODUCT_BOOSTER_MAP_REMOTE_ACTIVE&&PRODUCT_BOOSTER_MAP_NORMALIZED[key])||PRODUCT_BOOSTER_MAP_EMBEDDED_NORMALIZED[key]||null}
+function prodBase(product){const value=product&&typeof product==='object'?productValue(product):product;return PRODUCT_MAP.bases[normalizeProductMapPart(value)]||value}
+function lookupProductEntry(collection,nationality,product){return PRODUCT_MAP.entries[productMapKey(collection,nationality,product)]||null}
 function standardProductEntry(row){return lookupProductEntry(row&&row['Coleção'],row&&row['Nacionalidade'],prodBase(row))}
 
-function isMappedCase(product){return Object.keys(CASE_TO_BASE).some(x=>normalizeProductMapPart(x)===normalizeProductMapPart(product))}
-function estimatedCaseUnits(product,collection,nationality){const direct=lookupProductEntry(collection,nationality,product),base=lookupProductEntry(collection,nationality,prodBase(product));if(direct&&base&&base.boosters>0)return direct.boosters/base.boosters;const b=normalizeProductMapPart(prodBase(product));return b==='quadri pack'||b==='triple pack'?12:b==='blister unitario'?24:1}
-function isEstimatedRecord(row){const product=productValue(row);const direct=lookupProductEntry(row&&row['Coleção'],row&&row['Nacionalidade'],product);const base=standardProductEntry(row);return isMappedCase(product)?!direct&&!base:!direct}
-function productUnits(row){const product=productValue(row);const collection=row&&row['Coleção'],nationality=row&&row['Nacionalidade'];const direct=lookupProductEntry(collection,nationality,product);const base=standardProductEntry(row);const boosters=Number(row&&row['Total de Boosters'])||0;if(isMappedCase(product)){if(direct&&direct.boosters>0)return boosters/direct.boosters*estimatedCaseUnits(product,collection,nationality);if(base&&base.boosters>0)return boosters/base.boosters;return estimatedCaseUnits(product,collection,nationality)}if(direct&&direct.boosters>0)return boosters/direct.boosters;return 1}
+function isEstimatedRecord(row){return !(standardProductEntry(row)||lookupProductEntry(row&&row['Coleção'],row&&row['Nacionalidade'],productValue(row)))}
+/* Unidades equivalentes: boosters do registro ÷ boosters do produto base (ou do próprio produto). Sem mapeamento conta 1. */
+function productUnits(row){const ref=standardProductEntry(row)||lookupProductEntry(row&&row['Coleção'],row&&row['Nacionalidade'],productValue(row));const boosters=Number(row&&row['Total de Boosters'])||0;return ref&&ref.boosters>0?boosters/ref.boosters:1}
 function equivalentUnits(rows){return rows.reduce((sum,row)=>sum+productUnits(row),0)}
-function updateProductMappingWarning(prefix,rows){const id=(prefix||'')+'productWarning';const val=document.getElementById((prefix||'')+'totalProducts');if(!val)return;let el=document.getElementById(id);if(!el){el=val.parentElement.querySelector('.product-warning');if(el)el.id=id}if(!el){el=document.createElement('div');el.id=id;el.className='product-warning';el.style.cssText='font-size:11px;line-height:1.25;margin-top:5px;color:var(--muted)';val.parentElement.appendChild(el)}const estimated=rows.filter(isEstimatedRecord);el.hidden=!estimated.length;if(!estimated.length){el.textContent='';el.removeAttribute('title');return}const combos=[...new Set(estimated.map(r=>[r['Coleção']||'—',r['Nacionalidade']||'—',productValue(r)||'—'].join(' / ')))];const shown=combos.slice(0,5);el.textContent='⚠ '+estimated.length+' registro(s) contados por estimativa (sem padrão na planilha)';el.title='Combinações contadas por estimativa: '+shown.join('; ')+(combos.length>5?'; +'+(combos.length-5):'')}
+function updateProductMappingWarning(prefix,rows){const id=(prefix||'')+'productWarning';const val=document.getElementById((prefix||'')+'totalProducts');if(!val)return;let el=document.getElementById(id);if(!el){el=val.parentElement.querySelector('.product-warning');if(el)el.id=id}if(!el){el=document.createElement('div');el.id=id;el.className='product-warning';el.style.cssText='font-size:11px;line-height:1.25;margin-top:5px;color:var(--muted)';val.parentElement.appendChild(el)}const st=window.productMappingStatus;if(st==='unavailable'||st==='backend-old'){el.hidden=false;el.textContent='⚠ '+(st==='unavailable'?'Mapeamento indisponível':'Backend desatualizado (Produto Base não carregado)')+'; produtos contados por estimativa';el.removeAttribute('title');return}const estimated=rows.filter(isEstimatedRecord);el.hidden=!estimated.length;if(!estimated.length){el.textContent='';el.removeAttribute('title');return}const combos=[...new Set(estimated.map(r=>[r['Coleção']||'—',r['Nacionalidade']||'—',productValue(r)||'—'].join(' / ')))];const shown=combos.slice(0,5);el.textContent='⚠ '+estimated.length+' registro(s) contados por estimativa (sem padrão na planilha)';el.title='Combinações contadas por estimativa: '+shown.join('; ')+(combos.length>5?'; +'+(combos.length-5):'')}
 function equivalentHits(rows){const units=equivalentUnits(rows);const hits=rows.reduce((s,r)=>s+(+r.Total||0),0);return units?hits/units:0}
 const brazilFlag='<span class="flag-br" role="img" aria-label="Brasil"><svg viewBox="0 0 36 24" aria-hidden="true" focusable="false"><rect width="36" height="24" rx="2" fill="#009c3b"/><path fill="#ffdf00" d="M18 3 33 12 18 21 3 12Z"/><circle cx="18" cy="12" r="6" fill="#002776"/><path d="M13 10.5c3.7-1.8 7.7-1.8 10.8-.1" fill="none" stroke="#fff" stroke-width="1.2"/></svg></span>';const usaFlag='<span class="flag-br" role="img" aria-label="USA"><svg viewBox="0 0 36 24" aria-hidden="true" focusable="false"><rect width="36" height="24" rx="2" fill="#fff"/><path fill="#b22234" d="M0 0h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0z"/><rect width="16" height="13" fill="#3c3b6e"/><circle cx="3" cy="3" r=".65" fill="#fff"/><circle cx="8" cy="3" r=".65" fill="#fff"/><circle cx="13" cy="3" r=".65" fill="#fff"/><circle cx="5.5" cy="6" r=".65" fill="#fff"/><circle cx="10.5" cy="6" r=".65" fill="#fff"/><circle cx="3" cy="9" r=".65" fill="#fff"/><circle cx="8" cy="9" r=".65" fill="#fff"/><circle cx="13" cy="9" r=".65" fill="#fff"/></svg></span>';function displayCountry(value){return value==='Brasil'?brazilFlag+'<span>Brasil</span>':value==='USA'?usaFlag+'<span>USA</span>':escapeHtml(value)}
 function flagOnly(value){return value==='Brasil'?brazilFlag:value==='USA'?usaFlag:escapeHtml(value)}
@@ -422,7 +269,7 @@ function renderComparison(prefix,rows){const el=document.getElementById(prefix+'
 function renderRanking(prefix,rows){const el=document.getElementById(prefix+'ranking');const gs=group(rows,'Produto');el.innerHTML=gs.length?gs.slice(0,10).map((x,i)=>{const avg=x.equivalentHits;return`<div class="rank-row"><span class="rank-num">${i+1}</span><div><div class="rank-name">${escapeHtml(x.label)}</div><div class="rank-sub">${nf.format(x.hits)} hits · ${nf.format(x.boosters)} boosters</div></div><div class="rank-right"><span class="rank-rate">${pct(rate(x))}</span>${avg>=1?`<span class="rank-avg">· ${String(Math.round(avg))} ${Math.round(avg)===1?'hit':'hits'} em média</span>`:'<span class="rank-avg">· Sem garantia de hit</span>'}</div></div>`}).join(''):'<div class="empty">Nenhum produto no recorte atual.</div>'}
 function summaryHeadHtml(cats){const fixed=['Coleção','Boosters','Hits','Hit Rate','Booster por Hit'].map(t=>`<th rowspan="2">${t}</th>`).join('');return `<tr>${fixed}<th class="num-cell group-head" colspan="${cats.length}">Quantidade de boosters para sair um hit</th></tr><tr>`+cats.map(c=>`<th class="num-cell"><div class="th-rarity">${rarityIconHtml(c)}<span>${c}</span></div></th>`).join('')+'</tr>'}
 function rarityCells(rows,cats){return cats.map(c=>{const x=sums(rows,c);return `<td class="num-cell summary-rarity">${x.hits?nf.format(Math.ceil(x.boosters/x.hits)):'—'}</td>`}).join('')}
-function cardsPerBoosterFor(collection,nationality,product,fallback){const entry=lookupProductEntry(collection,nationality,product)||lookupProductEntry(collection,nationality,prodBase(product));return entry?entry.cardsPerBooster:fallback}
+function cardsPerBoosterFor(collection,nationality,product){const entry=lookupProductEntry(collection,nationality,product)||lookupProductEntry(collection,nationality,prodBase(product));return entry?entry.cardsPerBooster:0}
 const PAGER={m:{page:1,size:10,total:0},t:{page:1,size:10,total:0}};
 const PAGE_SIZES=[10,25,50,100];
 function pagerSlice(prefix,rows){const st=PAGER[prefix],pages=Math.max(1,Math.ceil(rows.length/st.size));st.page=Math.min(Math.max(1,st.page),pages);st.total=rows.length;return rows.slice((st.page-1)*st.size,st.page*st.size)}
@@ -431,10 +278,10 @@ function pagerRerender(prefix){(prefix==='m'?window.mRender:window.tRender)()}
 ['m','t'].forEach(prefix=>{const box=document.getElementById(prefix+'-pager');if(!box)return;const st=PAGER[prefix];box.addEventListener('click',e=>{const btn=e.target.closest('button[data-pager]');if(!btn||btn.disabled)return;const pages=Math.max(1,Math.ceil(st.total/st.size)),act=btn.dataset.pager;st.page=act==='first'?1:act==='prev'?st.page-1:act==='next'?st.page+1:pages;pagerRerender(prefix)});box.addEventListener('change',e=>{if(e.target.matches('[data-pager-size]')){st.size=Number(e.target.value)||10;st.page=1;pagerRerender(prefix)}})});
 function parseRecordTimestamp(value){if(value instanceof Date)return Number.isNaN(value.getTime())?null:value.getTime();if(typeof value==='number'&&Number.isFinite(value)){if(value>100000000000)return value;const ms=(value-25569)*86400000;return Number.isFinite(ms)?ms:null}if(value==null||value==='')return null;const text=String(value).trim();if(!text)return null;if(/^\d+(?:\.\d+)?$/.test(text)){const number=Number(text);if(number>100000000000)return number;const ms=(number-25569)*86400000;return Number.isFinite(ms)?ms:null}const local=text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2})(?:\.(\d+))?)?)?$/);if(local){const ms=Number(local[7]||0);const date=new Date(Number(local[3]),Number(local[2])-1,Number(local[1]),Number(local[4]||0),Number(local[5]||0),Number(local[6]||0),Number(('0.'+ms).slice(2,5)||0));return date.getFullYear()===Number(local[3])&&date.getMonth()===Number(local[2])-1&&date.getDate()===Number(local[1])?date.getTime():null}const parsed=Date.parse(text);return Number.isNaN(parsed)?null:parsed}function recordTimestamp(row){if(!row)return null;const value=row['Data'];return value==null||value===''?null:parseRecordTimestamp(value)}function recordHasTime(row){const value=row&&row['Data'];if(value instanceof Date)return value.getHours()!==0||value.getMinutes()!==0||value.getSeconds()!==0||value.getMilliseconds()!==0;if(typeof value==='number'&&Number.isFinite(value))return Math.abs(value-Math.floor(value))>1e-9;if(value==null)return false;const text=String(value).trim();return /(?:T|\s)\d{1,2}:\d{2}/.test(text)}function sortRecordsByRegisteredDate(rows){return rows.map((row,index)=>({row,index,time:recordTimestamp(row),hasTime:recordHasTime(row),line:Number(row&&row.__rowNumber)||0,id:Number(row&&row.ID)||0})).sort((a,b)=>{if(a.time!==null&&b.time===null)return -1;if(a.time===null&&b.time!==null)return 1;if(a.time!==null&&b.time!==null&&a.time!==b.time){if(!a.hasTime&&!b.hasTime&&new Date(a.time).toDateString()===new Date(b.time).toDateString()){if(a.id!==b.id)return b.id-a.id;if(a.line!==b.line)return b.line-a.line;return b.index-a.index}return b.time-a.time}if(a.id!==b.id)return b.id-a.id;if(a.line!==b.line)return b.line-a.line;return b.index-a.index}).map(item=>item.row)}
 
-function autofillFromProductMap(prefix,collection,legacyFill,recalc){const p=document.getElementById(prefix+'produto'),n=document.getElementById(prefix+'nacionalidade'),b=document.getElementById(prefix+'boosters'),c=document.getElementById(prefix+'total-cartas');if(!p||!n||!b||!c)return false;const direct=lookupProductEntry(collection,n.value,p.value);b.readOnly=true;c.readOnly=true;if(isMappedCase(p.value)&&!direct){b.readOnly=false;c.readOnly=false;b.value='';c.value='';return false}if(!direct){legacyFill();return false}b.value=String(direct.boosters);recalc();c.value=String(direct.boosters*direct.cardsPerBooster);return true}
+function fillProductSelect(select,products){const was=select.value;select.replaceChildren(...(products.length?products:[null]).map(name=>{const o=document.createElement('option');if(name===null){o.value='';o.textContent='Nenhum produto no Mapeamento';o.disabled=true}else{o.value=name;o.textContent=name}return o}));select.value=products.includes(was)?was:(products[0]||'')}
+function autofillFromProductMap(prefix,collection,recalc){const p=document.getElementById(prefix+'produto'),n=document.getElementById(prefix+'nacionalidade'),b=document.getElementById(prefix+'boosters'),c=document.getElementById(prefix+'total-cartas');if(!p||!n||!b||!c)return false;const direct=lookupProductEntry(collection,n.value,p.value);b.readOnly=true;c.readOnly=true;b.value=direct?String(direct.boosters):'0';recalc();return !!direct}
 
 const COLLECTION_LOGOS=Object.freeze({"Megaevolução":IMAGES.mega,"Fogo Fantasmagórico":IMAGES.fogo,"Heróis Excelsos":IMAGES.herois,"Equilíbrio Perfeito":IMAGES.equilibrio,"Caos Ascendente":IMAGES.caos,"Reinado Delta":IMAGES.reinadoDelta,"Escuridão Absoluta":IMAGES.escuridao,"Celebração de 30 anos":IMAGES.thirty});
-const ME_FORM_PRODUCTS=["Blister Unitário", "Triple Pack", "Case de Triple Pack", "Quadri Pack", "Case de Quadri Pack", "Combo de Pacote", "Box Mega Luar", "Box com Jumbo", "Box Desafio Estratégico", "Elite Trainer Box", "Case de Blister Unitário", "Booster Box", "Booster avulso"];const ME05_FORM_PRODUCTS=["Booster Box", "Elite Trainer Box", "Combo de Pacote", "Quadri Pack", "Case de Quadri Pack", "Triple Pack", "Case de Triple Pack", "Case de Blister Unitário", "Blister Unitário", "Booster avulso", "Box Desafio Estratégico", "Box com Jumbo"];
 const THIRTY_DATA=[];
 const T_CATS=['Double Rare','Classic Rare','Illustration Rare','Special Illustration Rare','Futuristic Rare'];
 const t_filterEls={collection:document.querySelector('[data-filter="t-collection"]'),product:document.querySelector('[data-filter="t-product"]'),nationality:document.querySelector('[data-filter="t-nationality"]')};
@@ -453,22 +300,23 @@ function tToggleIncluir(idx,checked){const d=THIRTY_DATA[idx];if(!d)return;d['In
 function tToggleAllIncluir(){const rows=t_rowsFor();const next=!(rows.length>0&&rows.every(isIncluido));rows.forEach(d=>d['Incluir']=next);tRender()}
 function tUpdateToggleAllBtn(rows){const btn=document.getElementById('t-toggleAllBtn'),allChecked=rows.length>0&&rows.every(d=>isIncluido(d));btn.textContent=allChecked?'Desmarcar todos':'Marcar todos'}
 
-function tAutofillBoostersLegacyFallback(){document.getElementById('t-f-boosters').value='0';tRecalcAddForm()}function tAutofillBoosters(){autofillFromProductMap('t-f-','Celebração de 30 anos',tAutofillBoostersLegacyFallback,tRecalcAddForm)}
-function tRecalcAddForm(){const boosters=+document.getElementById('t-f-boosters').value||0;const nation=document.getElementById('t-f-nacionalidade').value;const product=document.getElementById('t-f-produto').value;if(document.getElementById('t-f-total-cartas').readOnly)document.getElementById('t-f-total-cartas').value=boosters*cardsPerBoosterFor('Celebração de 30 anos',nation,product,6);const dr=+document.getElementById('t-f-dr').value||0,cr=+document.getElementById('t-f-cr').value||0,ir=+document.getElementById('t-f-ir').value||0,sir=+document.getElementById('t-f-sir').value||0,fr=+document.getElementById('t-f-fr').value||0;document.getElementById('t-f-total').value=dr+cr+ir+sir+fr}
-function tOpenAddModal(){if(window.isReadOnly)return;document.getElementById('t-addModalOverlay').classList.add('open');tAutofillBoosters()}
-function tCloseAddModal(){document.getElementById('t-addModalOverlay').classList.remove('open');document.getElementById('t-addForm').reset();tAutofillBoosters()}
+function tAutofillBoosters(){autofillFromProductMap('t-f-','Celebração de 30 anos',tRecalcAddForm)}
+function tUpdateAddProducts(){const sel=document.getElementById('t-f-produto'),nat=document.getElementById('t-f-nacionalidade');if(!sel||!nat)return;fillProductSelect(sel,mappedProducts('Celebração de 30 anos',nat.value));updateMapNotes();tAutofillBoosters()}
+function tRecalcAddForm(){const boosters=+document.getElementById('t-f-boosters').value||0;const nation=document.getElementById('t-f-nacionalidade').value;const product=document.getElementById('t-f-produto').value;if(document.getElementById('t-f-total-cartas').readOnly)document.getElementById('t-f-total-cartas').value=boosters*cardsPerBoosterFor('Celebração de 30 anos',nation,product);const dr=+document.getElementById('t-f-dr').value||0,cr=+document.getElementById('t-f-cr').value||0,ir=+document.getElementById('t-f-ir').value||0,sir=+document.getElementById('t-f-sir').value||0,fr=+document.getElementById('t-f-fr').value||0;document.getElementById('t-f-total').value=dr+cr+ir+sir+fr}
+function tOpenAddModal(){if(window.isReadOnly)return;document.getElementById('t-addModalOverlay').classList.add('open');tUpdateAddProducts();refreshMappingFromApi()}
+function tCloseAddModal(){document.getElementById('t-addModalOverlay').classList.remove('open');document.getElementById('t-addForm').reset();tUpdateAddProducts()}
 document.getElementById('t-openAddBtn')?.addEventListener('click',tOpenAddModal);
 document.getElementById('t-toggleAllBtn')?.addEventListener('click',tToggleAllIncluir);
 document.getElementById('t-closeAddBtn')?.addEventListener('click',tCloseAddModal);
 document.getElementById('t-cancelAddBtn')?.addEventListener('click',tCloseAddModal);
 document.getElementById('t-addModalOverlay')?.addEventListener('click',function(e){if(e.target.id==='t-addModalOverlay')tCloseAddModal()});
 ['t-f-dr','t-f-cr','t-f-ir','t-f-sir','t-f-fr'].forEach(function(id){document.getElementById(id)?.addEventListener('input',tRecalcAddForm)});
-document.getElementById('t-f-produto')?.addEventListener('change',tAutofillBoosters);document.getElementById('t-f-nacionalidade')?.addEventListener('change',tAutofillBoosters);
-document.getElementById('t-addForm')?.addEventListener('submit',async function(e){e.preventDefault();if(window.isReadOnly||window.__mutationBusy)return;if(!validateAddForm(this))return;const submit=e.submitter||this.querySelector('button[type="submit"]');window.__mutationBusy=true;if(submit)submit.disabled=true;try{const nac=document.getElementById('t-f-nacionalidade').value;const novo={'Data':todayBR(),'Bloco':document.getElementById('t-f-bloco').value,'Coleção':document.getElementById('t-f-colecao').value,'Produto':document.getElementById('t-f-produto').value,'Nacionalidade':nac,'Total de Boosters':+document.getElementById('t-f-boosters').value||0,'Quantidade de Cartas':cardsPerBoosterFor('Celebração de 30 anos',nac,document.getElementById('t-f-produto').value,6),'Total de Cartas':+document.getElementById('t-f-total-cartas').value||0,'Double Rare':+document.getElementById('t-f-dr').value||0,'Classic Rare':+document.getElementById('t-f-cr').value||0,'Illustration Rare':+document.getElementById('t-f-ir').value||0,'Special Illustration Rare':+document.getElementById('t-f-sir').value||0,'Futuristic Rare':+document.getElementById('t-f-fr').value||0,'Total':+document.getElementById('t-f-total').value||0};const newId=await addRecord('Celebração 30 anos',novo);if(newId){PAGER.t.page=1;await reloadAfterAdd('Celebração 30 anos',THIRTY_DATA,()=>{t_initFilters();tRender();},novo,newId);tCloseAddModal();}}catch(err){console.error('[UI] Falha ao adicionar registro:',err);alert('Não foi possível atualizar a coleção após o salvamento.');}finally{window.__mutationBusy=false;if(submit)submit.disabled=false;}});
+document.getElementById('t-f-produto')?.addEventListener('change',tAutofillBoosters);document.getElementById('t-f-nacionalidade')?.addEventListener('change',tUpdateAddProducts);
+document.getElementById('t-addForm')?.addEventListener('submit',async function(e){e.preventDefault();if(window.isReadOnly||window.__mutationBusy)return;if(!validateAddForm(this))return;const submit=e.submitter||this.querySelector('button[type="submit"]');window.__mutationBusy=true;if(submit)submit.disabled=true;try{const nac=document.getElementById('t-f-nacionalidade').value;const novo={'Data':todayBR(),'Bloco':document.getElementById('t-f-bloco').value,'Coleção':document.getElementById('t-f-colecao').value,'Produto':document.getElementById('t-f-produto').value,'Nacionalidade':nac,'Total de Boosters':+document.getElementById('t-f-boosters').value||0,'Quantidade de Cartas':cardsPerBoosterFor('Celebração de 30 anos',nac,document.getElementById('t-f-produto').value),'Total de Cartas':+document.getElementById('t-f-total-cartas').value||0,'Double Rare':+document.getElementById('t-f-dr').value||0,'Classic Rare':+document.getElementById('t-f-cr').value||0,'Illustration Rare':+document.getElementById('t-f-ir').value||0,'Special Illustration Rare':+document.getElementById('t-f-sir').value||0,'Futuristic Rare':+document.getElementById('t-f-fr').value||0,'Total':+document.getElementById('t-f-total').value||0};const newId=await addRecord('Celebração 30 anos',novo);if(newId){PAGER.t.page=1;await reloadAfterAdd('Celebração 30 anos',THIRTY_DATA,()=>{t_initFilters();tRender();},novo,newId);tCloseAddModal();}}catch(err){console.error('[UI] Falha ao adicionar registro:',err);alert('Não foi possível atualizar a coleção após o salvamento.');}finally{window.__mutationBusy=false;if(submit)submit.disabled=false;}});
 function tRender(){const rows=t_rowsFor(),metricRows=rows.filter(d=>isIncluido(d)),x=sums(metricRows),needed=ratioX(x);document.getElementById('t-hitRate').textContent=x.boosters?pct(rate(x)):'—';document.getElementById('t-boosterNeeded').textContent=cardAverage(needed);document.getElementById('t-totalHits').textContent=nf.format(x.hits);document.getElementById('t-totalBoosters').textContent=nf.format(x.boosters);document.getElementById('t-totalProducts').textContent=nf.format(Math.round(equivalentUnits(metricRows)));updateProductMappingWarning('t-',metricRows);document.getElementById('t-filterStatus').textContent=metricRows.length+' registro'+(metricRows.length===1?'':'s')+' considerado'+(metricRows.length===1?'':'s');tUpdateToggleAllBtn(rows);renderRarityCards('t-',T_CATS,metricRows);t_renderTable(metricRows);renderComparison('t-',metricRows);renderRanking('t-',metricRows);t_renderRegistry(rows);clearLoadError();applyReadOnlyMode(window.isReadOnly)}
 t_initFilters();tRender();
 function showScreen(id){['homeScreen','megaApp','thirtyApp'].forEach(function(s){document.getElementById(s).style.display = s===id ? '' : 'none'});if(id==='homeScreen'){if(typeof window.cancelMegaLoad==='function')window.cancelMegaLoad();const overlay=document.getElementById('loadingOverlay');if(overlay)overlay.style.display='none';const status=document.getElementById('meLoadStatus');if(status){status.replaceChildren();status.hidden=true}}if(typeof window.refreshDashboardLoading==='function')window.refreshDashboardLoading();updateLogoutVisibility()}
-function refreshMappingFromApi(){if(typeof loadMapeamento!=='function')return;loadMapeamento().then(rows=>{if(rows)applyRemoteProductMapping(rows,window.productMappingVersion||'')}).catch(()=>{})}
+function refreshMappingFromApi(){if(typeof loadMapeamento!=='function')return;if(!PRODUCT_MAP.list.length&&typeof readMapeamentoCache==='function'){const cached=readMapeamentoCache();if(cached)applyRemoteProductMapping(cached.data,cached.version)}loadMapeamento().then(rows=>{if(!rows){if(!PRODUCT_MAP.list.length){window.productMappingStatus='unavailable';refreshProductMapConsumers();updateMapNotes()}return}if(!PRODUCT_MAP.list.length||window.productMappingVersion!==PRODUCT_MAP.version)applyRemoteProductMapping(rows,window.productMappingVersion||'')}).catch(()=>{})}
 document.addEventListener('DOMContentLoaded',refreshMappingFromApi);
 
 const ME_COLLECTION_ORDER=Object.freeze(['Reinado Delta','Escuridão Absoluta','Caos Ascendente','Equilíbrio Perfeito','Heróis Excelsos','Fogo Fantasmagórico','Megaevolução']);
@@ -494,7 +342,8 @@ function collectionLogoBtn(name,cls,focus){const on=focus.includes(name),n=escap
 document.getElementById('m-focusChip').addEventListener('click',e=>{if(e.target.closest('.chip-clear')){ME_FOCUS.clear();PAGER.m.page=1;window.mRender()}});
 function meSelected(key){const box=window.m_filterEls[key];return box.querySelector('[data-all]').checked?null:[...box.querySelectorAll('input[data-value]:checked')].map(x=>x.value)}
 function meEnsureCollectionSelect(){const select=document.getElementById('m-f-colecao');if(!select)return null;select.required=true;const current=select.value;select.replaceChildren(...ME_COLLECTION_ORDER.map(name=>{const option=document.createElement('option');option.value=name;option.textContent=name;return option}));if(ME_COLLECTION_ORDER.includes(current))select.value=current;if(!select.dataset.meChangeBound){select.addEventListener('change',meUpdateAddProducts);select.dataset.meChangeBound='1'}return select}
-function meUpdateAddProducts(){const collection=meEnsureCollectionSelect();if(!collection)return;const coll=collection.value,sel=document.getElementById('m-f-produto'),was=sel.value,list=(coll==='Escuridão Absoluta'||coll==='Reinado Delta')?ME05_FORM_PRODUCTS:ME_FORM_PRODUCTS;sel.replaceChildren(...list.map(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;return o}));if(list.includes(was))sel.value=was;const marWrap=document.getElementById('m-f-mar-wrap');const hasMar=(ME_EXCLUSIVE_CATS['Mega Attack Rare']||[]).includes(coll);marWrap.hidden=!hasMar;if(!hasMar)document.getElementById('m-f-mar').value='0';mAutofillBoosters()}
+function meUpdateAddProducts(){const collection=meEnsureCollectionSelect();if(!collection)return;const coll=collection.value;fillProductSelect(document.getElementById('m-f-produto'),mappedProducts(coll,document.getElementById('m-f-nacionalidade').value));updateMapNotes();const marWrap=document.getElementById('m-f-mar-wrap');const hasMar=(ME_EXCLUSIVE_CATS['Mega Attack Rare']||[]).includes(coll);marWrap.hidden=!hasMar;if(!hasMar)document.getElementById('m-f-mar').value='0';mAutofillBoosters()}
+window.meUpdateAddProducts=meUpdateAddProducts;
 function mePrepareAdd(){const select=meEnsureCollectionSelect();if(!select)return;const selected=meSelected('collection');select.value=selected&&selected.length===1?selected[0]:ME_COLLECTION_ORDER[0];meUpdateAddProducts()}
 function meStart(){showScreen('megaApp');meLoadCollections()}
 var MEGA_DATA=[]; (function(){
@@ -511,11 +360,10 @@ function m_renderTable(rows,cats,focus){document.getElementById('m-summaryHead')
 
 function m_renderRegistry(rows,cats){document.getElementById('m-registryHead').innerHTML='<tr><th>ID</th><th>Bloco</th><th>Coleção</th><th>Produto</th><th>Nacionalidade</th><th>Boosters</th><th>Total de Cartas</th>'+cats.map(c=>`<th>${c}</th>`).join('')+'<th>Total</th><th></th></tr>';const body=document.getElementById('m-registryBody');const sorted=pagerSlice('m',sortRecordsByRegisteredDate(rows));renderPager('m');body.innerHTML=sorted.length?sorted.map(d=>{const idx=MEGA_DATA.indexOf(d);const checked=isIncluido(d);return `<tr class="${checked?'':'row-excluded'}"><td>${escapeHtml(d['ID'])}</td><td>${escapeHtml(d['Bloco']||'')}</td><td>${collectionLogoBtn(d['Coleção']||'','me-registry-logo',meFocusNames())}</td><td>${escapeHtml(productValue(d))}</td><td class="flag-cell">${flagOnly(d['Nacionalidade'])}</td><td class="num-cell">${nf.format(d['Total de Boosters']||0)}</td><td class="num-cell">${nf.format(d['Total de Cartas']||0)}</td>${cats.map(c=>`<td class="num-cell">${nf.format(d[c]||0)}</td>`).join('')}<td class="num-cell">${nf.format(d['Total']||0)}</td><td><div class="actions-cell"><input type="checkbox" class="row-check" ${checked?'checked':''} onchange="mToggleIncluir(${idx},this.checked)" aria-label="Considerar este registro nas métricas"><button type="button" class="delete-btn" onclick="mDeleteRegistro(${idx})" aria-label="Excluir registro">Excluir</button></div></td></tr>`}).join(''):`<tr><td colspan="${9+cats.length}" class="empty-table">Nenhum registro corresponde aos filtros selecionados.</td></tr>`}
 async function mDeleteRegistro(idx){if(window.isReadOnly)return;if(window.__mutationBusy)return;if(!confirm('Deseja realmente excluir este registro?'))return;const reg=MEGA_DATA[idx];if(!reg)return;const id=validRecordId(reg.ID);if(id===null){alert('Não foi possível excluir: o ID do registro é inválido.');return}const sheetName=reg.__sheetName||collectionSheetName(reg['Coleção']||'Megaevolução');window.__mutationBusy=true;try{const ok=await deleteRecord(sheetName,id);if(ok){MEGA_DATA.splice(idx,1);await meReloadSheet(sheetName);mRender()}else{showMutationError()}}catch(err){console.error('[UI] Falha ao excluir registro:',err);alert('Não foi possível atualizar a coleção após a exclusão.');}finally{window.__mutationBusy=false;}}
-const M_BOOSTER_MAP={'Booster Box':{Brasil:36,USA:36},'Elite Trainer Box':{Brasil:20,USA:9},'Combo de Pacote':{Brasil:18,USA:6},'Quadri Pack':{Brasil:4,USA:4},'Case de Quadri Pack':{Brasil:48,USA:48},'Triple Pack':{Brasil:3,USA:3},'Case de Blister Unitário':{Brasil:24,USA:24},'Blister Unitário':{Brasil:1,USA:1},'Case de Triple Pack':{Brasil:36,USA:36},'Box Mega Luar':{Brasil:6,USA:6},'Box com Jumbo':{Brasil:6,USA:6},'Box Desafio Estratégico':{Brasil:8,USA:8},'Booster avulso':{Brasil:1,USA:1}};
-function mAutofillBoostersLegacyFallback(){const produto=document.getElementById('m-f-produto').value;const nac=document.getElementById('m-f-nacionalidade').value;const map=M_BOOSTER_MAP[produto];if(map)document.getElementById('m-f-boosters').value=map[nac];mRecalcAddForm()}function mAutofillBoosters(){const c=document.getElementById('m-f-colecao').value;autofillFromProductMap('m-f-',c,mAutofillBoostersLegacyFallback,mRecalcAddForm)}window.mAutofillBoosters=mAutofillBoosters;window.mRecalcAddForm=mRecalcAddForm;
-function mRecalcAddForm(){const boosters=+document.getElementById('m-f-boosters').value||0;const nac=document.getElementById('m-f-nacionalidade').value,collection=document.getElementById('m-f-colecao').value,product=document.getElementById('m-f-produto').value;if(document.getElementById('m-f-total-cartas').readOnly)document.getElementById('m-f-total-cartas').value=boosters*cardsPerBoosterFor(collection,nac,product,nac==='USA'?10:6);const dr=+document.getElementById('m-f-dr').value||0,ur=+document.getElementById('m-f-ur').value||0,ir=+document.getElementById('m-f-ir').value||0,sir=+document.getElementById('m-f-sir').value||0,hr=+document.getElementById('m-f-hr').value||0,mar=+document.getElementById('m-f-mar').value||0;document.getElementById('m-f-total').value=dr+ur+ir+sir+hr+mar}
-function mOpenAddModal(){if(window.isReadOnly)return;document.getElementById('m-addModalOverlay').classList.add('open');mAutofillBoosters()}
-function mCloseAddModal(){document.getElementById('m-addModalOverlay').classList.remove('open');document.getElementById('m-addForm').reset();mAutofillBoosters()}
+function mAutofillBoosters(){autofillFromProductMap('m-f-',document.getElementById('m-f-colecao').value,mRecalcAddForm)}window.mAutofillBoosters=mAutofillBoosters;window.mRecalcAddForm=mRecalcAddForm;
+function mRecalcAddForm(){const boosters=+document.getElementById('m-f-boosters').value||0;const nac=document.getElementById('m-f-nacionalidade').value,collection=document.getElementById('m-f-colecao').value,product=document.getElementById('m-f-produto').value;if(document.getElementById('m-f-total-cartas').readOnly)document.getElementById('m-f-total-cartas').value=boosters*cardsPerBoosterFor(collection,nac,product);const dr=+document.getElementById('m-f-dr').value||0,ur=+document.getElementById('m-f-ur').value||0,ir=+document.getElementById('m-f-ir').value||0,sir=+document.getElementById('m-f-sir').value||0,hr=+document.getElementById('m-f-hr').value||0,mar=+document.getElementById('m-f-mar').value||0;document.getElementById('m-f-total').value=dr+ur+ir+sir+hr+mar}
+function mOpenAddModal(){if(window.isReadOnly)return;document.getElementById('m-addModalOverlay').classList.add('open');mAutofillBoosters();refreshMappingFromApi()}
+function mCloseAddModal(){document.getElementById('m-addModalOverlay').classList.remove('open');document.getElementById('m-addForm').reset();meUpdateAddProducts()}
 document.getElementById('m-openAddBtn')?.addEventListener('click',function(){mePrepareAdd();mOpenAddModal()});meEnsureCollectionSelect();
 document.getElementById('m-toggleAllBtn')?.addEventListener('click',mToggleAllIncluir);
 document.getElementById('m-closeAddBtn')?.addEventListener('click',mCloseAddModal);
@@ -523,8 +371,8 @@ document.getElementById('m-cancelAddBtn')?.addEventListener('click',mCloseAddMod
 document.getElementById('m-addModalOverlay')?.addEventListener('click',function(e){if(e.target.id==='m-addModalOverlay')mCloseAddModal()});
 ['m-f-dr','m-f-ur','m-f-ir','m-f-sir','m-f-hr','m-f-mar'].forEach(function(id){document.getElementById(id)?.addEventListener('input',mRecalcAddForm)});
 document.getElementById('m-f-produto')?.addEventListener('change',mAutofillBoosters);
-document.getElementById('m-f-nacionalidade')?.addEventListener('change',mAutofillBoosters);
-document.getElementById('m-addForm')?.addEventListener('submit',async function(e){e.preventDefault();if(window.isReadOnly||window.__mutationBusy)return;if(!validateAddForm(this))return;const submit=e.submitter||this.querySelector('button[type="submit"]');window.__mutationBusy=true;if(submit)submit.disabled=true;try{const nac=document.getElementById('m-f-nacionalidade').value;const novo={'Data':todayBR(),'Bloco':document.getElementById('m-f-bloco').value,'Coleção':document.getElementById('m-f-colecao').value,'Produto':document.getElementById('m-f-produto').value,'Nacionalidade':nac,'Total de Boosters':+document.getElementById('m-f-boosters').value||0,'Quantidade de Cartas':cardsPerBoosterFor(document.getElementById('m-f-colecao').value,nac,document.getElementById('m-f-produto').value,nac==='USA'?10:6),'Total de Cartas':+document.getElementById('m-f-total-cartas').value||0,'Double Rare':+document.getElementById('m-f-dr').value||0,'Ultra Rare':+document.getElementById('m-f-ur').value||0,'Illustration Rare':+document.getElementById('m-f-ir').value||0,'Special Illustration Rare':+document.getElementById('m-f-sir').value||0,'Mega Hyper Rare':+document.getElementById('m-f-hr').value||0,'Total':+document.getElementById('m-f-total').value||0};if(!document.getElementById('m-f-mar-wrap').hidden)novo['Mega Attack Rare']=+document.getElementById('m-f-mar').value||0;const sheetName=collectionSheetName(novo['Coleção']);const newId=await addRecord(sheetName,novo);if(newId){await meReloadSheet(sheetName);PAGER.m.page=1;m_initFilters();mRender();mCloseAddModal();}}catch(err){console.error('[UI] Falha ao adicionar registro:',err);alert('Não foi possível atualizar a coleção após o salvamento.');}finally{window.__mutationBusy=false;if(submit)submit.disabled=false;}});
+document.getElementById('m-f-nacionalidade')?.addEventListener('change',meUpdateAddProducts);
+document.getElementById('m-addForm')?.addEventListener('submit',async function(e){e.preventDefault();if(window.isReadOnly||window.__mutationBusy)return;if(!validateAddForm(this))return;const submit=e.submitter||this.querySelector('button[type="submit"]');window.__mutationBusy=true;if(submit)submit.disabled=true;try{const nac=document.getElementById('m-f-nacionalidade').value;const novo={'Data':todayBR(),'Bloco':document.getElementById('m-f-bloco').value,'Coleção':document.getElementById('m-f-colecao').value,'Produto':document.getElementById('m-f-produto').value,'Nacionalidade':nac,'Total de Boosters':+document.getElementById('m-f-boosters').value||0,'Quantidade de Cartas':cardsPerBoosterFor(document.getElementById('m-f-colecao').value,nac,document.getElementById('m-f-produto').value),'Total de Cartas':+document.getElementById('m-f-total-cartas').value||0,'Double Rare':+document.getElementById('m-f-dr').value||0,'Ultra Rare':+document.getElementById('m-f-ur').value||0,'Illustration Rare':+document.getElementById('m-f-ir').value||0,'Special Illustration Rare':+document.getElementById('m-f-sir').value||0,'Mega Hyper Rare':+document.getElementById('m-f-hr').value||0,'Total':+document.getElementById('m-f-total').value||0};if(!document.getElementById('m-f-mar-wrap').hidden)novo['Mega Attack Rare']=+document.getElementById('m-f-mar').value||0;const sheetName=collectionSheetName(novo['Coleção']);const newId=await addRecord(sheetName,novo);if(newId){await meReloadSheet(sheetName);PAGER.m.page=1;m_initFilters();mRender();mCloseAddModal();}}catch(err){console.error('[UI] Falha ao adicionar registro:',err);alert('Não foi possível atualizar a coleção após o salvamento.');}finally{window.__mutationBusy=false;if(submit)submit.disabled=false;}});
 function mToggleIncluir(idx,checked){const d=MEGA_DATA[idx];if(!d)return;d['Incluir']=!!checked;mRender()}
 function mToggleAllIncluir(){const rows=m_visibleRows();const next=!(rows.length>0&&rows.every(isIncluido));rows.forEach(d=>d['Incluir']=next);mRender()}
 function mUpdateToggleAllBtn(rows){const btn=document.getElementById('m-toggleAllBtn'),allChecked=rows.length>0&&rows.every(d=>isIncluido(d));btn.textContent=allChecked?'Desmarcar todos':'Marcar todos'}
@@ -537,6 +385,8 @@ window.m_initFilters=m_initFilters; window.mRender=mRender; window.mDeleteRegist
 document.getElementById('pickMega')?.addEventListener('click',meStart);document.getElementById('pickThirty')?.addEventListener('click',async function(){if(typeof window.cancelMegaLoad==='function')window.cancelMegaLoad();showScreen('thirtyApp');try{await loadCollectionDataForCollection('Celebração 30 anos',THIRTY_DATA,function(){t_initFilters();tRender()})}finally{if(typeof setLoading==='function')setLoading(false)}});function returnToHome(){showScreen('homeScreen')}
 
 function validateAddForm(form){
+  const prefix=form.id.replace('addForm','')+'f-',productSelect=document.getElementById(prefix+'produto');
+  if(!productSelect||!productSelect.value){alert('Não há produto no Mapeamento para esta coleção e nacionalidade. Cadastre a linha na aba Mapeamento e tente de novo.');return false}
   const nums=[...form.querySelectorAll('input[type="number"]')];
   for(const field of nums){const n=Number(field.value);if(field.value.trim()===''||!Number.isInteger(n)||n<0){field.focus();alert('Preencha os campos numéricos com inteiros maiores ou iguais a zero.');return false;}}
   const p=form.id.replace('addForm','')+'f-';
