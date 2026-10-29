@@ -69,9 +69,35 @@
 #loginScreen .lg-side .lg-contact{margin-top:0;padding:18px;text-align:left}
 #loginScreen .lg-side .lg-contact p{font-size:14px}
 #loginScreen .lg-side .lg-tg{width:auto;padding:0 22px}
-@media (max-width:900px){#loginScreen .lg-layout{grid-template-columns:minmax(0,1fr);gap:28px;max-width:440px}#loginScreen .lg-card{order:-1;max-width:none}#loginScreen .lg-side{text-align:center}#loginScreen .lg-side .lg-contact{text-align:center}#loginScreen .lg-side .lg-tg{width:100%}}
+@media (max-width:900px){#loginScreen .lg-layout{grid-template-columns:minmax(0,1fr);gap:28px;max-width:440px}#loginScreen .lg-card{order:-1;max-width:none}#loginScreen .lg-side{text-align:center}#loginScreen .lg-side .lg-contact{text-align:center}#loginScreen .lg-side .lg-tg{width:100%}#loginScreen .lg-side .sp-open{align-self:center}}
 @media (max-width:480px){#loginScreen.home-screen{padding:24px 16px}#loginScreen .lg-card{padding:28px 20px 20px}}
 @media (prefers-reduced-motion:reduce){#loginScreen *{transition:none!important}#loginScreen .lg-primary:hover,#loginScreen .lg-tg:hover{transform:none}}
+/* apoio voluntário */
+.sp-open{display:inline-flex;align-items:center;justify-content:center;gap:8px;align-self:flex-start;height:42px;padding:0 20px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:border-color .15s,background .15s}
+.sp-open:hover{border-color:var(--blue);background:rgba(82,103,232,.1)}
+.sp-open:focus-visible,.sp-apoia:focus-visible,.sp-copy:focus-visible,.sp-close:focus-visible{outline:2px solid #8c9bff;outline-offset:2px}
+.sp-ico{width:17px;height:17px;fill:#8c9bff;flex:0 0 auto}
+.sp-open-home{margin:26px auto 0;align-self:auto}
+.sp-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(8,8,12,.72);backdrop-filter:blur(3px)}
+.sp-overlay[hidden]{display:none}
+.sp-dialog{position:relative;width:100%;max-width:400px;background:#1e1e24;border:1px solid var(--line);border-radius:18px;padding:28px 26px 22px;color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.55);text-align:center}
+.sp-close{position:absolute;top:10px;right:12px;width:34px;height:34px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:24px;line-height:1;cursor:pointer}
+.sp-close:hover{background:rgba(255,255,255,.07);color:var(--ink)}
+.sp-head{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.sp-head .sp-ico{width:22px;height:22px}
+.sp-head h2{margin:0;font-size:20px;letter-spacing:-.01em}
+.sp-text{margin:0 0 18px;color:var(--muted);font-size:13.5px;line-height:1.55}
+.sp-apoia{display:flex;align-items:center;justify-content:center;height:46px;border-radius:10px;background:linear-gradient(180deg,#6479f0,#4a5fdc);color:#fff;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(82,103,232,.35);transition:transform .12s}
+.sp-apoia:hover{transform:translateY(-1px)}
+.sp-or{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.sp-or::before,.sp-or::after{content:"";flex:1;height:1px;background:var(--line)}
+.sp-pix{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.sp-pix-label{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.sp-pix code{display:block;padding:9px 10px;border-radius:8px;background:rgba(0,0,0,.28);color:var(--ink);font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;user-select:all}
+.sp-copy{height:40px;border:1px solid var(--blue);border-radius:10px;background:rgba(82,103,232,.14);color:#c9d1ff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s}
+.sp-copy:hover{background:rgba(82,103,232,.28)}
+.sp-status{min-height:18px;margin:10px 0 0;color:#7fd6a0;font-size:12.5px;font-weight:600}
+@media (prefers-reduced-motion:reduce){.sp-open,.sp-apoia,.sp-copy{transition:none}.sp-apoia:hover{transform:none}}
 /* ícones de raridade dos cards: -10% */
 .rarity .double-rare-icon{width:18.4px;height:12.2px}.rarity .ultra-rare-icon{width:27.5px;height:18.4px}.rarity .hyper-rare-icon{width:24.5px;height:18.4px}.rarity .illustration-rare-icon{width:15.3px;height:15.3px}.rarity .sir-icon,.rarity .futuristic-rare-icon{width:19.9px;height:19.9px}.rarity .mega-attack-rare-icon{width:23px;height:15.3px}.rarity .rarity-stars{font-size:10.7px}.rarity{container-type:inline-size}.rarity .label{flex-wrap:nowrap;gap:6px}.rarity .rarity-name{white-space:nowrap;font-size:clamp(6.5px,calc(6.4cqw - 1.8px),10px);min-width:0}
 /* registros: títulos centralizados */
@@ -160,6 +186,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
         Falar no Telegram
       </a>
     </aside>
+    <button type="button" class="sp-open" data-support-open><svg class="sp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 5 6 5c2 0 3.2 1 4 2.2h4C14.8 6 16 5 18 5c3.3 0 5.1 3.4 3.6 6.8C19.5 16.4 12 21 12 21z" transform="translate(0 .5) scale(1)"/></svg>Apoiar o projeto</button>
   </section>
   <main class="lg-card">
     <div class="lg-logo"><img data-img="pokemon" alt="Pokémon Trading Card Game"></div>
@@ -198,6 +225,21 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
   </main>
   </div>
 </div>
+<div id="supportModal" class="sp-overlay" hidden>
+  <div class="sp-dialog" role="dialog" aria-modal="true" aria-labelledby="spTitle">
+    <button type="button" class="sp-close" id="spClose" aria-label="Fechar">&times;</button>
+    <div class="sp-head"><svg class="sp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 5 6 5c2 0 3.2 1 4 2.2h4C14.8 6 16 5 18 5c3.3 0 5.1 3.4 3.6 6.8C19.5 16.4 12 21 12 21z" transform="translate(0 .5) scale(1)"/></svg><h2 id="spTitle">Apoie o projeto</h2></div>
+    <p class="sp-text">O site é gratuito e o apoio é totalmente voluntário. Se ele te ajuda, considere contribuir para manter o projeto no ar.</p>
+    <a class="sp-apoia" href="https://apoia.se/calculadora_pullratetcg" target="_blank" rel="noopener noreferrer">Apoiar na campanha do Apoia-se</a>
+    <div class="sp-or"><span>ou via Pix</span></div>
+    <div class="sp-pix">
+      <span class="sp-pix-label">Chave Pix (aleatória)</span>
+      <code id="spPixKey">2ff79106-74e9-4e57-8cb4-c817bcc384c7</code>
+      <button type="button" class="sp-copy" id="spCopy">Copiar chave</button>
+    </div>
+    <p class="sp-status" id="spStatus" role="status" aria-live="polite"></p>
+  </div>
+</div>
 <div id="homeScreen" class="home-screen" style="display:none">
 <div class="home-inner">
 <div class="brand-logo"><img data-img="pokemon" alt="Pokémon Trading Card Game"></div>
@@ -208,6 +250,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <button type="button" class="collection-btn" id="pickThirty"><img data-img="thirty" alt="Celebração de 30 anos"><span class="home-btn-label">Celebração de 30 anos</span></button>
 <button type="button" class="collection-btn" id="pickMega"><img data-img="mega" alt="Megaevolução"><span class="home-btn-label">Megaevolução</span></button>
 </div>
+<button type="button" class="sp-open sp-open-home" data-support-open><svg class="sp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 5 6 5c2 0 3.2 1 4 2.2h4C14.8 6 16 5 18 5c3.3 0 5.1 3.4 3.6 6.8C19.5 16.4 12 21 12 21z" transform="translate(0 .5) scale(1)"/></svg>Apoiar o projeto</button>
 </div>
 </div>
 <div class="shell" id="megaApp" style="display:none">
@@ -489,4 +532,6 @@ function applyReadOnlyMode(readOnly){
 </div>
 
 <script src="gasApi.js"></script>
+<script>(function(){const modal=document.getElementById('supportModal');if(!modal)return;const status=document.getElementById('spStatus');let opener=null;function open(from){opener=from||null;status.textContent='';modal.hidden=false;document.getElementById('spClose').focus()}function close(){modal.hidden=true;if(opener&&typeof opener.focus==='function')opener.focus()}document.addEventListener('click',function(e){const b=e.target.closest('[data-support-open]');if(b){open(b);return}if(e.target===modal||e.target.closest('#spClose'))close()});document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape')close();if(e.key==='Tab'){const f=[...modal.querySelectorAll('a[href],button')];if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});document.getElementById('spCopy').addEventListener('click',async function(){const key=document.getElementById('spPixKey').textContent.trim();let ok=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(key);ok=true}}catch(err){}if(!ok){try{const t=document.createElement('textarea');t.value=key;t.setAttribute('readonly','');t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(err){}}status.textContent=ok?'Chave Pix copiada! Obrigado pelo apoio 💜':'Não foi possível copiar. Selecione a chave e copie manualmente.'})})();
+</script>
 </body></html>
