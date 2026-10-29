@@ -48,6 +48,7 @@
 #loginScreen .lg-primary{border:0;color:#fff;background:linear-gradient(180deg,#6479f0,#4a5fdc);box-shadow:0 8px 20px rgba(82,103,232,.35);margin-top:2px}
 #loginScreen .lg-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(82,103,232,.45)}
 #loginScreen .lg-ghost{background:transparent;border:1px solid var(--line);color:var(--ink);font-weight:600;letter-spacing:0;height:44px}
+#loginScreen .lg-ghost{display:flex;align-items:center;justify-content:center;gap:8px}#loginScreen .lg-ghost-ico{width:17px;height:17px;stroke:var(--muted);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 #loginScreen .lg-ghost:hover{border-color:var(--blue);background:rgba(82,103,232,.08)}
 #loginScreen .lg-or{display:flex;align-items:center;gap:12px;margin:20px 0 14px;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 #loginScreen .lg-or::before,#loginScreen .lg-or::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -189,7 +190,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
     </form>
 
     <div class="lg-or"><span>ou</span></div>
-    <button type="button" id="guestBtn" class="lg-btn lg-ghost">🦇 Acesso para a Morcegada</button>
+    <button type="button" id="guestBtn" class="lg-btn lg-ghost"><svg class="lg-ghost-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Acesso aos dados</button>
     <p class="lg-hint">Visualização somente leitura de todos os dados do projeto.</p>
 
 
