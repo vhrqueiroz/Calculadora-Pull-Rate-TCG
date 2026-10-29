@@ -1,5 +1,5 @@
 /* Cliente da API do Pokémon TCG Dashboard. O token de sessão existe somente em memória. */
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxAON1fvdZPXi3OAAhMiVyj0Eao0DqkSYFDmuk3c5uWTXRRHq_Tt3gkeinWGbODnhij/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxgHETfH_xmzxDgfARG8RaOo7gVj5RaMuSXC-4npGjBBXOSitdFDI0i6UU0Bl0wJsY/exec";
 const MAP_STORAGE_KEY = "pokemonTcgDashboard.mapeamento.v1";
 const NUMERIC_FIELDS = ["ID", "Total de Boosters", "Quantidade de Cartas", "Total de Cartas", "Double Rare", "Ultra Rare", "Classic Rare", "Illustration Rare", "Special Illustration Rare", "Mega Hyper Rare", "Mega Attack Rare", "Futuristic Rare", "Total"];
 const RETRY_PAUSES = [600, 1500];
