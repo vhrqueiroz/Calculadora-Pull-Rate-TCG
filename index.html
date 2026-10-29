@@ -25,8 +25,9 @@
 #m-summaryHead th,#t-summaryHead th{text-align:center;vertical-align:bottom}
 #m-summaryBody td,#t-summaryBody td{text-align:center;vertical-align:middle}
 /* tela de login */
-#loginScreen{position:relative;overflow:hidden;background:radial-gradient(60% 50% at 50% 38%,rgba(82,103,232,.22),transparent 70%),radial-gradient(40% 35% at 85% 90%,rgba(130,80,220,.12),transparent 70%),var(--bg)}
-#loginScreen::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);pointer-events:none}
+#loginScreen,#homeScreen{position:relative;overflow:hidden;background:radial-gradient(60% 50% at 50% 38%,rgba(82,103,232,.22),transparent 70%),radial-gradient(40% 35% at 85% 90%,rgba(130,80,220,.12),transparent 70%),var(--bg)}
+#loginScreen::before,#homeScreen::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);pointer-events:none}
+#homeScreen>.home-inner{position:relative}
 #loginScreen .lg-card{position:relative;width:100%;max-width:400px;background:#1e1e24;border:1px solid var(--line);border-radius:18px;padding:34px 30px 28px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.03) inset}
 #loginScreen .lg-logo{display:flex;justify-content:center;margin-bottom:18px}
 #loginScreen .lg-logo img{display:block;width:170px;max-width:100%;height:auto}
