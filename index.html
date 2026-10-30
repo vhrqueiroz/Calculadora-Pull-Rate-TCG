@@ -72,6 +72,15 @@
 @media (max-width:900px){#loginScreen .lg-layout{grid-template-columns:minmax(0,1fr);gap:28px;max-width:440px}#loginScreen .lg-card{order:-1;max-width:none}#loginScreen .lg-side{text-align:center}#loginScreen .lg-side .lg-contact{text-align:center}#loginScreen .lg-side .lg-tg{width:100%}#loginScreen .lg-side .sp-open{align-self:center}}
 @media (max-width:480px){#loginScreen.home-screen{padding:24px 16px}#loginScreen .lg-card{padding:28px 20px 20px}}
 @media (prefers-reduced-motion:reduce){#loginScreen *{transition:none!important}#loginScreen .lg-primary:hover,#loginScreen .lg-tg:hover{transform:none}}
+/* aviso de pré-release */
+.prerelease-note{display:flex;align-items:center;gap:14px;max-width:618px;margin:26px auto 0;padding:14px 16px;border:1px solid rgba(140,155,255,.35);background:rgba(82,103,232,.1);border-radius:12px;text-align:left}
+.prerelease-note p{flex:1;margin:0;color:var(--ink);font-size:13px;line-height:1.5}
+.prerelease-note b{color:#c9d1ff}
+.pr-ico{width:22px;height:22px;flex:0 0 auto;stroke:#8c9bff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pr-btn{flex:0 0 auto;height:36px;padding:0 16px;border:1px solid var(--blue);border-radius:10px;background:rgba(82,103,232,.18);color:#c9d1ff;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;transition:background .15s}
+.pr-btn:hover{background:rgba(82,103,232,.34)}
+.pr-btn:focus-visible{outline:2px solid #8c9bff;outline-offset:2px}
+@media (max-width:600px){.prerelease-note{flex-direction:column;text-align:center;gap:10px}.pr-btn{width:100%}}
 /* apoio voluntário */
 .sp-open{display:inline-flex;align-items:center;justify-content:center;gap:8px;align-self:flex-start;height:42px;padding:0 20px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:border-color .15s,background .15s}
 .sp-open:hover{border-color:var(--blue);background:rgba(82,103,232,.1)}
@@ -250,6 +259,11 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <button type="button" class="collection-btn" id="pickThirty"><img data-img="thirty" alt="Celebração de 30 anos"><span class="home-btn-label">Celebração de 30 anos</span></button>
 <button type="button" class="collection-btn" id="pickMega"><img data-img="mega" alt="Megaevolução"><span class="home-btn-label">Megaevolução</span></button>
 </div>
+<aside class="prerelease-note" aria-label="Aviso para apoiadores">
+<svg class="pr-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+<p><b>Pré-release · Reinado Delta</b><br>Os apoiadores têm acesso exclusivo aos dados de pré-release da coleção Reinado Delta.</p>
+<button type="button" class="pr-btn" data-support-open>Quero apoiar</button>
+</aside>
 </div>
 </div>
 <div class="shell" id="megaApp" style="display:none">
