@@ -1,5 +1,5 @@
 /* Cliente da API do Pokémon TCG Dashboard. O token de sessão existe somente em memória. */
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzYySqKvys9BGkpxs9GdRnbO_4ED9wSj7N1uDhR9cMEvPSuuNEQu-LE0K9f01yA3fHA/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwetIhoWY8g1u0mJBlN5SNUijPMmrEqT8Q8roObqyNG2smmyhvWdvtC626sV26uWhn9/exec";
 const MAP_STORAGE_KEY = "pokemonTcgDashboard.mapeamento.v1";
 const NUMERIC_FIELDS = ["ID", "Total de Boosters", "Quantidade de Cartas", "Total de Cartas", "Double Rare", "Ultra Rare", "Classic Rare", "Illustration Rare", "Special Illustration Rare", "Mega Hyper Rare", "Mega Attack Rare", "Futuristic Rare", "Total"];
 const RETRY_PAUSES = [600, 1500];
@@ -28,7 +28,7 @@ function _isTransient(error) {
 
 /* Envia um POST ao Web App. Falhas de rede, timeout, 404/429/5xx e resposta não JSON são
    repetidas até 2 vezes; erros devolvidos pelo servidor (success:false) não são repetidos. */
-async function _post(payload) {
+async function _post(payload, options) {
   for (let attempt = 0; ; attempt++) {
     const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     const timer = controller ? setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS) : null;
@@ -61,7 +61,7 @@ async function _post(payload) {
       else if (error.status === 404) error.message = "O servidor do Google não respondeu após várias tentativas. Verifique a conexão e a URL /exec da implantação.";
       else if (error instanceof TypeError && !error.code) { error.code = "REDE_OU_CORS"; error.message = "Falha de rede/CORS após várias tentativas. Verifique a conexão e a implantação."; }
       error.attempts = attempt + 1;
-      if (error.code === "SESSAO_EXPIRADA") _notifySessionExpired(error.message);
+      if (error.code === "SESSAO_EXPIRADA" && !(options && options.silentSession)) _notifySessionExpired(error.message);
       throw error;
     } finally { if (timer !== null) clearTimeout(timer); }
   }
@@ -126,6 +126,31 @@ async function addRecord(sheetName, recordData) {
   } catch (err) {
     if (err.code !== "SESSAO_EXPIRADA") _reportMutationError(err);
     return null;
+  }
+}
+/**
+ * Envia uma contribuição pública (sem login) para a fila de moderação.
+ * Devolve {ok:true} ou {ok:false,message,code}; nunca exibe alert por conta própria.
+ */
+async function submitContribution(payload) {
+  try {
+    await _post({
+      action: "submitContribution",
+      name: payload.name,
+      email: payload.email,
+      consent: payload.consent === true,
+      website: payload.website || "",
+      data: payload.data || {},
+      requestId: payload.requestId || _makeRequestId()
+    }, { silentSession: true });
+    return { ok: true };
+  } catch (err) {
+    let message = err.message || "Não foi possível enviar agora.";
+    // Implantação antiga não conhece a ação e cai na checagem de sessão.
+    if (err.code === "SESSAO_EXPIRADA" || err.code === "NAO_PERMITIDO" || err.code === "DEPLOYMENT_DESATUALIZADO") {
+      message = "O envio de contribuições ainda não está disponível. Tente novamente mais tarde.";
+    }
+    return { ok: false, message: message, code: err.code || "ERRO_SOLICITACAO" };
   }
 }
 async function deleteRecord(sheetName, id) {

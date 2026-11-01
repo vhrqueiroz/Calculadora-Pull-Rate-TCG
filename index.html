@@ -68,8 +68,9 @@
 #loginScreen .lg-about p b{color:var(--ink)}
 #loginScreen .lg-side .lg-contact{margin-top:0;padding:18px;text-align:left}
 #loginScreen .lg-side .lg-contact p{font-size:14px}
+#loginScreen .lg-side .lg-contrib{margin:0}
 #loginScreen .lg-side .lg-tg{width:auto;padding:0 22px}
-@media (max-width:900px){#loginScreen .lg-layout{grid-template-columns:minmax(0,1fr);gap:28px;max-width:440px}#loginScreen .lg-card{order:-1;max-width:none}#loginScreen .lg-side{text-align:center}#loginScreen .lg-side .lg-contact{text-align:center}#loginScreen .lg-side .lg-tg{width:100%}#loginScreen .lg-side .sp-open{align-self:center}}
+@media (max-width:900px){#loginScreen .lg-layout{grid-template-columns:minmax(0,1fr);gap:28px;max-width:440px}#loginScreen .lg-card{order:-1;max-width:none}#loginScreen .lg-side{text-align:center}#loginScreen .lg-side .lg-contrib{text-align:center}#loginScreen .lg-side .lg-contact{text-align:center}#loginScreen .lg-side .lg-tg{width:100%}#loginScreen .lg-side .sp-open{align-self:center}}
 @media (max-width:480px){#loginScreen.home-screen{padding:24px 16px}#loginScreen .lg-card{padding:28px 20px 20px}}
 @media (prefers-reduced-motion:reduce){#loginScreen *{transition:none!important}#loginScreen .lg-primary:hover,#loginScreen .lg-tg:hover{transform:none}}
 /* aviso de lançamento */
@@ -192,6 +193,39 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 
 .collection-logo-top{display:flex;justify-content:center;margin:0 auto 14px}
 .collection-logo-top img{display:block;width:clamp(160px,26vw,300px);max-width:100%;height:auto}
+/* contribuição pública */
+.lg-contrib{padding:18px;border:1px solid rgba(140,155,255,.35);background:rgba(82,103,232,.1);border-radius:12px;text-align:left}
+.lg-contrib h3{margin:0 0 6px;font-size:16px;color:var(--ink)}
+.lg-contrib p{margin:0 0 14px;color:var(--ink);font-size:14px;line-height:1.5}
+.ct-open{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 22px;border:0;border-radius:10px;background:linear-gradient(180deg,#6479f0,#4a5fdc);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(82,103,232,.35);transition:transform .12s}
+.ct-open:hover{transform:translateY(-1px)}
+.ct-open svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ct-open:focus-visible,.ct-btn:focus-visible,.ct-dialog input:focus-visible,.ct-dialog select:focus-visible{outline:2px solid #8c9bff;outline-offset:2px}
+.ct-home{display:flex;justify-content:center;margin:22px auto 0}
+#contribModal{padding-top:72px}.ct-dialog{max-width:640px;max-height:calc(100vh - 88px);overflow:auto;text-align:left;padding:26px 24px 22px}
+.ct-dialog .sp-head{justify-content:flex-start;padding-right:34px}
+.ct-dialog .sp-text{margin-bottom:14px}
+.ct-group{margin:0 0 14px;padding:12px 14px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.ct-group legend{padding:0 6px;color:#c9d1ff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ct-dialog .form-grid label[hidden]{display:none}
+.ct-dialog .form-grid input,.ct-dialog .form-grid select{width:100%;min-width:0}
+.ct-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden;opacity:0}
+.ct-consent{font-weight:500;display:flex;align-items:flex-start;gap:10px;margin:2px 0 12px;color:var(--muted);font-size:12.5px;line-height:1.5;cursor:pointer}
+.ct-consent input{flex:0 0 auto;width:18px;height:18px;margin-top:1px;accent-color:#5267e8}
+.ct-note{margin:0 0 10px;color:var(--muted);font-size:12px;line-height:1.5}
+.ct-error{margin:0 0 12px;padding:9px 12px;border:1px solid rgba(255,107,107,.45);border-radius:10px;background:rgba(255,107,107,.1);color:#ffb4b4;font-size:13px;font-weight:600}
+.ct-error[hidden],.ct-note[hidden],#ctDone[hidden],#ctFormBody[hidden]{display:none}
+.ct-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:6px}
+.ct-btn{height:42px;padding:0 20px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.ct-btn:hover{border-color:var(--blue);background:rgba(82,103,232,.1)}
+.ct-btn.ct-primary{border:0;background:linear-gradient(180deg,#6479f0,#4a5fdc);color:#fff;box-shadow:0 8px 20px rgba(82,103,232,.3)}
+.ct-btn:disabled{opacity:.6;cursor:wait}
+#ctDone{text-align:center;padding:10px 0 4px}
+#ctDone h3{margin:0 0 8px;font-size:18px;color:var(--ink)}
+#ctDone p{margin:0 0 18px;color:var(--muted);font-size:13.5px;line-height:1.55}
+#ctDone .ct-actions{justify-content:center}
+@media(max-width:480px){.ct-dialog{padding:22px 16px 18px}.ct-actions .ct-btn{flex:1 1 100%}}
+@media (prefers-reduced-motion:reduce){.ct-open{transition:none}.ct-open:hover{transform:none}}
 .rank-right{display:flex;flex-direction:row;align-items:center;gap:6px}.rank-avg{font-weight:950}@keyframes spin{to{transform:rotate(360deg)}}
 </style><style>.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.multi-filter[data-filter="t-collection"] .me-filter-logo{height:32px;width:auto;max-width:min(190px,65vw);object-fit:contain;display:block}.multi-filter[data-filter="t-collection"] .check-row{display:flex;align-items:center;gap:10px;min-height:42px;max-width:100%;overflow:hidden}.me-summary-logo{height:32px;width:110px;max-width:40vw;object-fit:contain}.me-load-status{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0;padding:10px 12px;border:1px solid #d6a545;border-radius:8px;color:#fff2ce;background:#3b2c12}.me-load-status[hidden]{display:none!important}@media(max-width:600px){.me-summary-logo{height:28px;width:88px}}</style></head>
 <body>
@@ -205,8 +239,13 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
       <p>Aqui você encontra o registro de aberturas de boosters, blisters, boxes e outros produtos, organizado por coleção e nacionalidade, para entender na prática quantos boosters são necessários para tirar cada raridade. A base reúne os registros dos maiores criadores de conteúdo do Brasil: <b>Montalvão</b> e <b>TiuSam</b>.</p>
       <p><b>Você também pode colaborar com os seus próprios registros, de forma totalmente gratuita.</b> Quanto mais aberturas registradas, mais preciso fica o pull rate de cada coleção para toda a comunidade.</p>
     </div>
+    <aside class="lg-contrib" aria-label="Contribuir com dados">
+      <h3>Contribua com os seus dados</h3>
+      <p>Abriu boosters, boxes ou blisters? Envie o resultado da sua abertura, sem precisar de login. Cada registro é revisado antes de entrar nas estatísticas.</p>
+      <button type="button" class="ct-open" data-contrib-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Contribuir com meus dados</button>
+    </aside>
     <aside class="lg-contact" aria-label="Contato pelo Telegram">
-      <p>Quer calcular o <b>pull rate</b> dos seus próprios boosters ou contribuir com dados para o projeto? Entre em contato pelo Telegram.</p>
+      <p>Quer calcular o <b>pull rate</b> dos seus próprios boosters ou tirar dúvidas sobre o projeto? Entre em contato pelo Telegram.</p>
       <a class="lg-tg" href="https://t.me/+5585985347530" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.5 2.8 10.7c-.9.4-.9 1.1-.2 1.3l4.8 1.5 1.8 5.6c.2.6.4.8.8.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.2-.4-1.8-1.4-1.3zM8.6 13.3l9.3-5.9c.4-.3.8-.1.5.2l-7.6 6.9-.3 3.1z"/></svg>
         Falar no Telegram
@@ -260,6 +299,56 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
     <button type="button" class="lk-login" id="lkLogin">Já sou apoiador: fazer login</button>
   </div>
 </div>
+<div id="contribModal" class="sp-overlay" hidden>
+  <div class="sp-dialog ct-dialog" role="dialog" aria-modal="true" aria-labelledby="ctTitle">
+    <button type="button" class="sp-close" id="ctClose" aria-label="Fechar">&times;</button>
+    <div class="sp-head"><svg class="sp-ico" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#8c9bff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M12 5v14M5 12h14"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg><h2 id="ctTitle">Contribuir com meus dados</h2></div>
+    <div id="ctFormBody">
+    <p class="sp-text">Informe o resultado da sua abertura. Os envios são revisados antes de entrar nas estatísticas de cada coleção.</p>
+    <form id="ctForm" novalidate autocomplete="on">
+      <fieldset class="ct-group"><legend>Seus dados</legend>
+        <div class="form-grid">
+          <label>Nome<input type="text" id="c-f-nome" name="name" maxlength="60" autocomplete="name" required></label>
+          <label>E-mail<input type="email" id="c-f-email" name="email" maxlength="100" autocomplete="email" required></label>
+        </div>
+      </fieldset>
+      <div class="ct-hp" aria-hidden="true"><label>Não preencha este campo<input type="text" id="c-f-website" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <fieldset class="ct-group"><legend>Abertura</legend>
+        <div class="form-grid">
+          <label>Bloco<select id="c-f-bloco"><option value="Mega Evolução">Mega Evolução</option><option value="Coleções Especiais">Celebração de 30 anos</option></select></label>
+          <label>Coleção<select id="c-f-colecao"></select></label>
+          <label>Nacionalidade<select id="c-f-nacionalidade"><option value="Brasil">Brasil</option><option value="USA">USA</option></select></label>
+          <label>Produto<select id="c-f-produto"></select></label>
+          <label>Boosters<input type="number" id="c-f-boosters" min="1" step="1" inputmode="numeric" value="0" readonly></label>
+          <label>Total de Cartas<input type="number" id="c-f-total-cartas" value="0" readonly></label>
+        </div>
+      </fieldset>
+      <fieldset class="ct-group"><legend>Hits por raridade</legend>
+        <div class="form-grid" id="ctRarities">
+          <label id="c-w-dr">Double Rare<input type="number" id="c-f-dr" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-ur">Ultra Rare<input type="number" id="c-f-ur" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-cr" hidden>Classic Rare<input type="number" id="c-f-cr" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-ir">Illustration Rare<input type="number" id="c-f-ir" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-sir">Special Illustration Rare<input type="number" id="c-f-sir" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-hr">Mega Hyper Rare<input type="number" id="c-f-hr" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-mar" hidden>Mega Attack Rare<input type="number" id="c-f-mar" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label id="c-w-fr" hidden>Futuristic Rare<input type="number" id="c-f-fr" min="0" step="1" inputmode="numeric" value="0"></label>
+          <label>Total de Hit<input type="number" id="c-f-total" value="0" readonly></label>
+        </div>
+      </fieldset>
+      <p class="ct-note" id="ctNote" hidden></p>
+      <label class="ct-consent"><input type="checkbox" id="c-f-consent"><span>Concordo em enviar meu nome e e-mail junto com os dados da abertura. Eles ficam visíveis apenas para o responsável pelo projeto e não aparecem publicamente.</span></label>
+      <p class="ct-error" id="ctError" role="alert" hidden></p>
+      <div class="ct-actions"><button type="button" class="ct-btn" id="ctCancel">Cancelar</button><button type="submit" class="ct-btn ct-primary" id="ctSubmit">Enviar contribuição</button></div>
+    </form>
+    </div>
+    <div id="ctDone" hidden role="status" aria-live="polite">
+      <h3>Obrigado por contribuir! 💜</h3>
+      <p>Seu registro foi enviado e será revisado antes de entrar nas estatísticas. Quanto mais aberturas, mais preciso fica o pull rate para toda a comunidade.</p>
+      <div class="ct-actions"><button type="button" class="ct-btn" id="ctAnother">Enviar outra abertura</button><button type="button" class="ct-btn ct-primary" id="ctDoneClose">Fechar</button></div>
+    </div>
+  </div>
+</div>
 <div id="supportModal" class="sp-overlay" hidden>
   <div class="sp-dialog" role="dialog" aria-modal="true" aria-labelledby="spTitle">
     <button type="button" class="sp-close" id="spClose" aria-label="Fechar">&times;</button>
@@ -285,6 +374,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
 <button type="button" class="collection-btn" id="pickThirty"><img data-img="thirty" alt="Celebração de 30 anos"><span class="home-btn-label">Celebração de 30 anos</span></button>
 <button type="button" class="collection-btn" id="pickMega"><img data-img="mega" alt="Megaevolução"><span class="home-btn-label">Megaevolução</span></button>
 </div>
+<div class="ct-home"><button type="button" class="ct-open" data-contrib-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Contribuir com meus dados</button></div>
 <aside class="launch-note" aria-label="Lançamento da coleção Reinado Delta">
 <img class="launch-logo" data-img="reinadoDelta" alt="Reinado Delta">
 <div class="launch-text"><span class="launch-eyebrow">Lançamento oficial</span><strong>Reinado Delta chega em <time datetime="2026-11-06">6 de novembro de 2026</time></strong></div>
@@ -394,7 +484,7 @@ let PRODUCT_MAP=Object.freeze({entries:{},list:[],bases:{},suspect:[],version:''
 function nationKey(value){const n=normalizeProductMapPart(value);return n==='eua'||n==='u.s.a.'?'usa':n}
 function buildProductMap(rows,version){const entries={},list=[],bases={},suspect=[];(rows||[]).forEach(r=>{const collection=String(r.Colecao||r['Coleção']||r.colecao||'').trim(),product=String(productFromMapRow(r)||'').trim(),nationality=String(r.Nacionalidade||r.nacionalidade||'').trim(),boosters=Number(r['Total de Boosters']),cards=Number(r['Total de Cartas']);if(!collection||!product||!nationality||!Number.isFinite(boosters)||!Number.isFinite(cards))return;const rawBase=String(r['Produto Base']||'').trim(),base=rawBase&&normalizeProductMapPart(rawBase)!==normalizeProductMapPart(product)?rawBase:'';const entry={collection,nationality,product,boosters,cardsPerBooster:cards,base};entries[productMapKey(collection,nationality,product)]=entry;list.push(entry);if(base)bases[normalizeProductMapPart(product)]=base;if(cards>20)suspect.push(entry)});return Object.freeze({entries,list,bases,suspect,version:version||''})}
 function mappedProducts(collection,nationality){const c=normalizeCollectionMapPart(collection),n=nationKey(nationality),seen=new Set(),out=[];PRODUCT_MAP.list.forEach(e=>{if(normalizeCollectionMapPart(e.collection)!==c||nationKey(e.nationality)!==n)return;const k=normalizeProductMapPart(e.product);if(!seen.has(k)){seen.add(k);out.push(e.product)}});return out}
-function refreshProductMapConsumers(){[window.m_initFilters,t_initFilters,window.mRender,tRender,window.meUpdateAddProducts,tUpdateAddProducts].forEach(fn=>{if(typeof fn==='function')fn()})}
+function refreshProductMapConsumers(){[window.m_initFilters,t_initFilters,window.mRender,tRender,window.meUpdateAddProducts,tUpdateAddProducts,window.cUpdateProducts].forEach(fn=>{if(typeof fn==='function')fn()})}
 function mappingNoteText(){const st=window.productMappingStatus;if(st==='unavailable')return 'Não foi possível carregar a aba Mapeamento: sem ela não há produtos para cadastrar. Recarregue a página ou confira a implantação do Apps Script.';if(st==='backend-old')return 'O backend (Codigo.gs) está desatualizado: publique a nova versão para que a coluna "Produto Base" do Mapeamento seja lida.';if(PRODUCT_MAP.suspect.length)return 'Atenção: '+PRODUCT_MAP.suspect.length+' linha(s) do Mapeamento têm "Total de Cartas" acima de 20. Essa coluna deve ter as cartas de cada booster (ex.: 6 ou 10), não o total do produto.';return ''}
 function updateMapNotes(){const text=mappingNoteText();['m','t'].forEach(p=>{const el=document.getElementById(p+'-mapNote');if(el){el.hidden=!text;el.textContent=text}})}
 function applyRemoteProductMapping(rows,version){if(!Array.isArray(rows)||!rows.length)return false;PRODUCT_MAP=buildProductMap(rows,version);window.productMappingVersion=version||'';window.productMappingStatus=rows.some(r=>r&&'Produto Base' in r)?'ok':'backend-old';refreshProductMapConsumers();updateMapNotes();return true}
@@ -585,6 +675,54 @@ function applyReadOnlyMode(readOnly){
 <script src="gasApi.js"></script>
 <script>(function(){const modal=document.getElementById('supportModal');if(!modal)return;const status=document.getElementById('spStatus');let opener=null;function open(from){opener=from||null;status.textContent='';modal.hidden=false;document.getElementById('spClose').focus()}function close(){modal.hidden=true;if(opener&&typeof opener.focus==='function')opener.focus()}document.addEventListener('click',function(e){const b=e.target.closest('[data-support-open]');if(b){open(b);return}if(e.target===modal||e.target.closest('#spClose'))close()});document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape')close();if(e.key==='Tab'){const f=[...modal.querySelectorAll('a[href],button')];if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});document.getElementById('spCopy').addEventListener('click',async function(){const key=document.getElementById('spPixKey').textContent.trim();let ok=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(key);ok=true}}catch(err){}if(!ok){try{const t=document.createElement('textarea');t.value=key;t.setAttribute('readonly','');t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(err){}}status.textContent=ok?'Chave Pix copiada! Obrigado pelo apoio 💜':'Não foi possível copiar. Selecione a chave e copie manualmente.'})})();
 </script>
+<script>(function(){const modal=document.getElementById('contribModal');if(!modal)return;
+const $=id=>document.getElementById(id);
+const BLOCKS={'Mega Evolução':{collections:()=>ME_COLLECTION_ORDER.slice(),cats:['dr','ur','ir','sir','hr','mar']},'Coleções Especiais':{collections:()=>['Celebração de 30 anos'],cats:['dr','cr','ir','sir','fr']}};
+const RARITY_NAMES={dr:'Double Rare',ur:'Ultra Rare',cr:'Classic Rare',ir:'Illustration Rare',sir:'Special Illustration Rare',hr:'Mega Hyper Rare',mar:'Mega Attack Rare',fr:'Futuristic Rare'};
+const ALL_KEYS=Object.keys(RARITY_NAMES),MAX_FREE=1000;
+const newId=()=>'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+let opener=null,requestId=newId(),busy=false;
+function showError(msg,field){const el=$('ctError');el.textContent=msg||'';el.hidden=!msg;if(field&&field.focus)field.focus()}
+function visibleKeys(){const coll=$('c-f-colecao').value,block=BLOCKS[$('c-f-bloco').value]||BLOCKS['Mega Evolução'];const marOk=(ME_EXCLUSIVE_CATS['Mega Attack Rare']||[]).includes(coll);return block.cats.filter(k=>k!=='mar'||marOk)}
+function recalc(){const boosters=+$('c-f-boosters').value||0,coll=$('c-f-colecao').value,nac=$('c-f-nacionalidade').value,prod=$('c-f-produto').value;$('c-f-total-cartas').value=boosters*cardsPerBoosterFor(coll,nac,prod);$('c-f-total').value=visibleKeys().reduce((a,k)=>a+(+$('c-f-'+k).value||0),0)}
+function syncRarities(){const vis=visibleKeys();ALL_KEYS.forEach(k=>{const on=vis.includes(k),wrap=$('c-w-'+k),input=$('c-f-'+k);wrap.hidden=!on;input.disabled=!on;if(!on)input.value='0'})}
+function updateNote(){const note=$('ctNote'),has=PRODUCT_MAP.list.length>0,st=window.productMappingStatus;let text='';if(!has)text=st==='unavailable'?'Não foi possível carregar a lista de produtos. Recarregue a página e tente de novo.':'Carregando a lista de produtos…';note.textContent=text;note.hidden=!text}
+function syncProducts(){const coll=$('c-f-colecao').value;fillProductSelect($('c-f-produto'),mappedProducts(coll,$('c-f-nacionalidade').value));autofillFromProductMap('c-f-',coll,recalc);updateNote()}
+function syncCollection(){syncRarities();syncProducts()}
+function syncBlock(){const sel=$('c-f-colecao'),was=sel.value,list=BLOCKS[$('c-f-bloco').value].collections();sel.replaceChildren(...list.map(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;return o}));if(list.includes(was))sel.value=was;syncCollection()}
+window.cUpdateProducts=function(){if(!modal.hidden)syncProducts()};
+function resetRarities(){ALL_KEYS.forEach(k=>{$('c-f-'+k).value='0'});recalc()}
+function validate(){const name=$('c-f-nome').value.replace(/\s+/g,' ').trim(),email=$('c-f-email').value.trim();
+if(name.length<2||name.length>60)return['Informe seu nome (2 a 60 caracteres).',$('c-f-nome')];
+if(email.length>100||!/^[^\s@<>,;:"]+@[^\s@<>,;:"]+\.[^\s@<>,;:"]{2,}$/.test(email))return['Informe um e-mail válido.',$('c-f-email')];
+if(!$('c-f-produto').value)return['Não há produto cadastrado para esta coleção e nacionalidade.',$('c-f-produto')];
+const boosters=Number($('c-f-boosters').value);if(!Number.isInteger(boosters)||boosters<1||boosters>MAX_FREE)return['Informe a quantidade de boosters abertos (de 1 a '+MAX_FREE+').',$('c-f-boosters')];
+for(const k of visibleKeys()){const el=$('c-f-'+k),raw=el.value.trim(),n=Number(raw);if(raw===''||!Number.isInteger(n)||n<0)return['Preencha "'+RARITY_NAMES[k]+'" com um número inteiro maior ou igual a zero.',el]}
+if((+$('c-f-total').value||0)>(+$('c-f-total-cartas').value||0))return['A soma dos hits não pode ser maior que o total de cartas abertas.',$('c-f-dr')];
+if(!$('c-f-consent').checked)return['Marque a caixa de concordância para enviar.',$('c-f-consent')];
+return null}
+function focusables(){return [...modal.querySelectorAll('button,input,select')].filter(el=>!el.disabled&&!el.readOnly&&el.tabIndex>=0&&el.offsetParent!==null&&!el.closest('.ct-hp'))}
+function open(from){opener=from||document.activeElement;showError('');if($('ctDone').hidden===false){showView(false)}modal.hidden=false;syncBlock();if(typeof refreshMappingFromApi==='function')refreshMappingFromApi();const first=$('c-f-nome').value?$('c-f-bloco'):$('c-f-nome');first.focus()}
+function close(){modal.hidden=true;if(opener&&typeof opener.focus==='function')opener.focus()}
+function showView(done){$('ctDone').hidden=!done;$('ctFormBody').hidden=done}
+document.addEventListener('click',function(e){const b=e.target.closest('[data-contrib-open]');if(b){open(b);return}if(e.target.closest('#ctClose,#ctCancel,#ctDoneClose'))close()});
+document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape'){close();return}if(e.key==='Tab'){const f=focusables();if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+$('c-f-bloco').addEventListener('change',syncBlock);
+$('c-f-colecao').addEventListener('change',syncCollection);
+$('c-f-nacionalidade').addEventListener('change',syncProducts);
+$('c-f-produto').addEventListener('change',()=>autofillFromProductMap('c-f-',$('c-f-colecao').value,recalc));
+modal.addEventListener('input',function(e){recalc();requestId=newId();if(!$('ctError').hidden&&e.target.id!=='c-f-website')showError('')});
+$('ctAnother').addEventListener('click',function(){resetRarities();$('c-f-website').value='';requestId=newId();showError('');showView(false);syncRarities();recalc();$('c-f-produto').focus()});
+$('ctForm').addEventListener('submit',async function(e){e.preventDefault();if(busy)return;const problem=validate();if(problem){showError(problem[0],problem[1]);return}
+const data={'Bloco':$('c-f-bloco').value,'Coleção':$('c-f-colecao').value,'Produto':$('c-f-produto').value,'Nacionalidade':$('c-f-nacionalidade').value,'Total de Boosters':+$('c-f-boosters').value};
+visibleKeys().forEach(k=>{data[RARITY_NAMES[k]]=+$('c-f-'+k).value});
+if(typeof submitContribution!=='function'){showError('Não foi possível enviar agora. Tente novamente mais tarde.');return}
+busy=true;const btn=$('ctSubmit');btn.disabled=true;btn.textContent='Enviando…';showError('');
+try{const r=await submitContribution({name:$('c-f-nome').value.replace(/\s+/g,' ').trim(),email:$('c-f-email').value.trim(),consent:$('c-f-consent').checked,website:$('c-f-website').value,data,requestId});
+if(r&&r.ok){showView(true);$('ctDone').querySelector('h3').setAttribute('tabindex','-1');$('ctDone').querySelector('h3').focus()}else showError((r&&r.message)||'Não foi possível enviar agora. Tente novamente.')}
+catch(err){showError('Não foi possível enviar agora. Tente novamente.')}
+finally{busy=false;btn.disabled=false;btn.textContent='Enviar contribuição'}});
+})();</script>
 <script>(function(){const modal=document.getElementById('lockedModal');if(!modal)return;let opener=null;function open(){opener=document.activeElement;modal.hidden=false;document.getElementById('lkClose').focus()}function close(restore){modal.hidden=true;if(restore!==false&&opener&&typeof opener.focus==='function'&&document.contains(opener))opener.focus()}window.showLockedNotice=function(){open()};modal.addEventListener('click',function(e){if(e.target===modal||e.target.closest('#lkClose'))close();else if(e.target.closest('[data-support-open]'))close(false)});document.getElementById('lkLogin').addEventListener('click',function(){close(false);if(typeof resetToLogin==='function')resetToLogin()});document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape'){e.stopImmediatePropagation();close()}if(e.key==='Tab'){const f=[...modal.querySelectorAll('button')];if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}},true)})();
 </script>
 </body></html>
