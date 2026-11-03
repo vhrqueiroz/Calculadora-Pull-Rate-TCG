@@ -310,6 +310,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
         <div class="form-grid">
           <label>Nome<input type="text" id="c-f-nome" name="name" maxlength="60" autocomplete="name" required></label>
           <label>E-mail<input type="email" id="c-f-email" name="email" maxlength="100" autocomplete="email" required></label>
+          <label>Telefone (DDD XXXXX-XXXX)<input type="tel" id="c-f-telefone" name="phone" inputmode="numeric" maxlength="13" placeholder="85 91234-5678" autocomplete="tel-national" required></label>
         </div>
       </fieldset>
       <div class="ct-hp" aria-hidden="true"><label>Não preencha este campo<input type="text" id="c-f-website" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -337,7 +338,7 @@ tr.focus-dim{opacity:.45}tr.focus-dim:hover{opacity:.85}tr.focus-on td{backgroun
         </div>
       </fieldset>
       <p class="ct-note" id="ctNote" hidden></p>
-      <label class="ct-consent"><input type="checkbox" id="c-f-consent"><span>Concordo em enviar meu nome e e-mail junto com os dados da abertura. Eles ficam visíveis apenas para o responsável pelo projeto e não aparecem publicamente.</span></label>
+      <label class="ct-consent"><input type="checkbox" id="c-f-consent"><span>Concordo em enviar meu nome, e-mail e telefone junto com os dados da abertura. Eles ficam visíveis apenas para o responsável pelo projeto e não aparecem publicamente.</span></label>
       <p class="ct-error" id="ctError" role="alert" hidden></p>
       <div class="ct-actions"><button type="button" class="ct-btn" id="ctCancel">Cancelar</button><button type="submit" class="ct-btn ct-primary" id="ctSubmit">Enviar contribuição</button></div>
     </form>
@@ -692,9 +693,13 @@ function syncCollection(){syncRarities();syncProducts()}
 function syncBlock(){const sel=$('c-f-colecao'),was=sel.value,list=BLOCKS[$('c-f-bloco').value].collections();sel.replaceChildren(...list.map(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;return o}));if(list.includes(was))sel.value=was;syncCollection()}
 window.cUpdateProducts=function(){if(!modal.hidden)syncProducts()};
 function resetRarities(){ALL_KEYS.forEach(k=>{$('c-f-'+k).value='0'});recalc()}
+const phoneDigits=v=>String(v||'').replace(/\D/g,'').slice(0,11);
+const maskPhone=v=>{const d=phoneDigits(v);return d.length<=2?d:d.length<=7?d.slice(0,2)+' '+d.slice(2):d.slice(0,2)+' '+d.slice(2,7)+'-'+d.slice(7)};
+const isPhone=v=>/^[1-9]\d 9\d{4}-\d{4}$/.test(maskPhone(v))&&phoneDigits(v).length===11;
 function validate(){const name=$('c-f-nome').value.replace(/\s+/g,' ').trim(),email=$('c-f-email').value.trim();
 if(name.length<2||name.length>60)return['Informe seu nome (2 a 60 caracteres).',$('c-f-nome')];
 if(email.length>100||!/^[^\s@<>,;:"]+@[^\s@<>,;:"]+\.[^\s@<>,;:"]{2,}$/.test(email))return['Informe um e-mail válido.',$('c-f-email')];
+if(!isPhone($('c-f-telefone').value))return['Informe o telefone no formato DDD XXXXX-XXXX (ex.: 85 91234-5678).',$('c-f-telefone')];
 if(!$('c-f-produto').value)return['Não há produto cadastrado para esta coleção e nacionalidade.',$('c-f-produto')];
 const boosters=Number($('c-f-boosters').value);if(!Number.isInteger(boosters)||boosters<1||boosters>MAX_FREE)return['Informe a quantidade de boosters abertos (de 1 a '+MAX_FREE+').',$('c-f-boosters')];
 for(const k of visibleKeys()){const el=$('c-f-'+k),raw=el.value.trim(),n=Number(raw);if(raw===''||!Number.isInteger(n)||n<0)return['Preencha "'+RARITY_NAMES[k]+'" com um número inteiro maior ou igual a zero.',el]}
@@ -711,14 +716,14 @@ $('c-f-bloco').addEventListener('change',syncBlock);
 $('c-f-colecao').addEventListener('change',syncCollection);
 $('c-f-nacionalidade').addEventListener('change',syncProducts);
 $('c-f-produto').addEventListener('change',()=>autofillFromProductMap('c-f-',$('c-f-colecao').value,recalc));
-modal.addEventListener('input',function(e){recalc();requestId=newId();if(!$('ctError').hidden&&e.target.id!=='c-f-website')showError('')});
+modal.addEventListener('input',function(e){if(e.target.id==='c-f-telefone')e.target.value=maskPhone(e.target.value);recalc();requestId=newId();if(!$('ctError').hidden&&e.target.id!=='c-f-website')showError('')});
 $('ctAnother').addEventListener('click',function(){resetRarities();$('c-f-website').value='';requestId=newId();showError('');showView(false);syncRarities();recalc();$('c-f-produto').focus()});
 $('ctForm').addEventListener('submit',async function(e){e.preventDefault();if(busy)return;const problem=validate();if(problem){showError(problem[0],problem[1]);return}
 const data={'Bloco':$('c-f-bloco').value,'Coleção':$('c-f-colecao').value,'Produto':$('c-f-produto').value,'Nacionalidade':$('c-f-nacionalidade').value,'Total de Boosters':+$('c-f-boosters').value};
 visibleKeys().forEach(k=>{data[RARITY_NAMES[k]]=+$('c-f-'+k).value});
 if(typeof submitContribution!=='function'){showError('Não foi possível enviar agora. Tente novamente mais tarde.');return}
 busy=true;const btn=$('ctSubmit');btn.disabled=true;btn.textContent='Enviando…';showError('');
-try{const r=await submitContribution({name:$('c-f-nome').value.replace(/\s+/g,' ').trim(),email:$('c-f-email').value.trim(),consent:$('c-f-consent').checked,website:$('c-f-website').value,data,requestId});
+try{const r=await submitContribution({name:$('c-f-nome').value.replace(/\s+/g,' ').trim(),email:$('c-f-email').value.trim(),phone:maskPhone($('c-f-telefone').value),consent:$('c-f-consent').checked,website:$('c-f-website').value,data,requestId});
 if(r&&r.ok){showView(true);$('ctDone').querySelector('h3').setAttribute('tabindex','-1');$('ctDone').querySelector('h3').focus()}else showError((r&&r.message)||'Não foi possível enviar agora. Tente novamente.')}
 catch(err){showError('Não foi possível enviar agora. Tente novamente.')}
 finally{busy=false;btn.disabled=false;btn.textContent='Enviar contribuição'}});
